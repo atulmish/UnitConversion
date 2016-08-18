@@ -8,18 +8,25 @@ namespace UnitConversion.Base {
         public UnitFactors(string baseUnit) {
             BaseUnit = baseUnit;
         }
+
         protected string BaseUnit;
 
-        public new bool ContainsKey(UnitFactorKeys key) {
-            return this.Any(factor => factor.Key.Equals(key));
+        /// <summary>
+        /// Find if the given unit is supported
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public bool ContainsUnit(UnitFactorKeys key) {
+            return this.Any(factor => factor.Key.Contains(key));
         }
 
-        public void AddSynonym(UnitFactorKeys key, string synonym) {
-            var factor = this.FirstOrDefault(f => f.Key.Equals(key)).Key;
-            if (factor == null) {
-                throw new UnitNotSupportedException("The Unit you are trying to add a synonym to does not exist");
-            }
-            factor.Add(synonym);
+        /// <summary>
+        /// Find if the given unit is supported
+        /// </summary>
+        /// <param name="synonym"></param>
+        /// <returns></returns>
+        public bool ContainsUnit(string synonym) {
+            return ContainsUnit((UnitFactorKeys)synonym);
         }
     }
 }

@@ -15,34 +15,29 @@ namespace UnitConversion.Base {
             return new UnitFactorKeys(str);
         }
 
-        /// <summary>
-        /// Compare to a UnitDictionaryKey or String
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj) {
-            if (obj == null) {
-                return false;
-            }
+        public override string ToString() {
+            return String.Join(", ", this);
+        }
 
-            UnitFactorKeys keys;
-            if (obj.GetType() == typeof(string)) {
-                keys = (string)obj;
-            } else if (obj.GetType() == typeof(UnitFactorKeys)) {
-                keys = (UnitFactorKeys)obj;
-            } else {
-                return false;
-            }
-             
-            return keys.Any(s => this.Contains(s, StringComparer.CurrentCultureIgnoreCase));
+
+        /// <summary>
+        /// Find if some synonym of a given UnitFactor is included in this UnitFactor
+        /// </summary>
+        /// <param name="synonym">Name of a unit</param>
+        public bool Contains(UnitFactorKeys keys) {
+            return keys.Any(synonym => this.Contains(synonym));
+        }
+
+        /// <summary>
+        /// Find if some synonym is included in this UnitFactor
+        /// </summary>
+        /// <param name="synonym">Name of a unit</param>
+        public new bool Contains(string synonym) {
+            return this.Contains(synonym, StringComparer.CurrentCultureIgnoreCase);
         }
         
         public override int GetHashCode() {
             return base.GetHashCode();
-        }
-
-        public override string ToString() {
-            return String.Join(", ", this);
         }
     }
 }

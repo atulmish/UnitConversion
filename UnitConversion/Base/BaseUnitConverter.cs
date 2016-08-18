@@ -63,7 +63,7 @@ namespace UnitConversion.Base {
         private string unitRight;
 
         private void ValidateUnit(string unit) {
-            if (false == Units.ContainsKey(unit)) {
+            if (false == Units.ContainsUnit(unit)) {
                 throw new UnitNotSupportedException(unit);
             }
         }
@@ -110,17 +110,13 @@ namespace UnitConversion.Base {
         }
 
         private double AToB(double value, string startUnit, string endUnit) {
-            var startRatio = Units.First(factor => factor.Key.Equals(startUnit)).Value;
-            var endRatio = Units.First(factor => factor.Key.Equals(endUnit)).Value;
+            var startRatio = Units.First(factor => factor.Key.Contains(startUnit)).Value;
+            var endRatio = Units.First(factor => factor.Key.Contains(endUnit)).Value;
             return (value / startRatio) * endRatio;
         }
 
 
         // ** UNIT FACTORS **
-
-        public void AddSynonym(string unitName, string synonym) {
-            units.AddSynonym(unitName, synonym);
-        }
 
         public IEnumerable<UnitFactorKeys> SupportedUnits() {
             return Units.Keys.AsEnumerable();
