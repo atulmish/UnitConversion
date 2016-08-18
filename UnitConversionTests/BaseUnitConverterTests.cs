@@ -74,6 +74,15 @@ namespace UnitConversionTests {
             converter.UnitLeft = "L";
             Assert.AreEqual(expected, converter.RightToLeft(input, 1));
         }
+
+        [TestMethod()]
+        public void AddSynonymTest() {
+            Assert.ThrowsException<UnitNotSupportedException>(() => converter.UnitRight = "R");
+            converter.AddSynonym("right", "R");
+            converter.UnitRight = "R";
+            converter.AddSynonym("R", "john cena");
+            converter.UnitRight = "john cena";
+        }
     }
 
     class TestConverter : BaseUnitConverter {

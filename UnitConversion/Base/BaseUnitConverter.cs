@@ -130,5 +130,10 @@ namespace UnitConversion.Base {
                 return Units.Keys.AsEnumerable();
             }
         }
+
+        public void AddSynonym(string existingSynonym, string newSynonym) {
+            var factor = Units.FirstOrDefault(f => f.Key.Contains(existingSynonym)).Key;
+            factor.Add(newSynonym);
+        }
     }
 }
