@@ -65,7 +65,7 @@ namespace UnitConversionTests {
 
     class TestConverter : BaseUnitConverter {
         public TestConverter() {
-            var units = new UnitDictionary("mid") {
+            var units = new UnitFactors("mid") {
                 { "mid", 1 },
                 { "left", 2 },
                 { "right", 3 },

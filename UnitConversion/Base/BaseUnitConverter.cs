@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace UnitConversion.Base {
     public abstract class BaseUnitConverter : IUnitConverter {
-        protected void Instantiate(UnitDictionary conversionFactors, string leftUnit, string rightUnit) {
+        protected void Instantiate(UnitFactors conversionFactors, string leftUnit, string rightUnit) {
             Units = conversionFactors;
 
             UnitLeft = leftUnit;
@@ -15,7 +15,7 @@ namespace UnitConversion.Base {
         /// <summary>
         /// Internal Dictionary of units based off ratios from a central unit
         /// </summary>
-        public UnitDictionary Units {
+        protected UnitFactors Units {
             get {
                 if (units == null) {
                     throw new NullReferenceException("UnitDictionary is not created");
@@ -26,7 +26,7 @@ namespace UnitConversion.Base {
                 units = value;
             }
         }
-        private UnitDictionary units;
+        private UnitFactors units;
         
         /// <summary>
         /// The Unit to convert on the left
@@ -113,6 +113,17 @@ namespace UnitConversion.Base {
             var startRatio = Units.First(factor => factor.Key.Equals(startUnit)).Value;
             var endRatio = Units.First(factor => factor.Key.Equals(endUnit)).Value;
             return (value / startRatio) * endRatio;
+        }
+
+
+        // ** UNIT FACTORS **
+
+        public void AddSynonym(string unitName, string synonym) {
+            units.AddSynonym(unitName, synonym);
+        }
+
+        public IEnumerable<UnitFactorKeys> SupportedUnits() {
+            return Units.Keys.AsEnumerable();
         }
     }
 }
