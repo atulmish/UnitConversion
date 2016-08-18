@@ -10,7 +10,7 @@ namespace UnitConversionExample {
         public static void Main(string[] args) {
             // Simple programmatic approach to conversion between units
             var converter = new MassConverter("kg", "lbs");
-            double kg = 452d;
+            double kg = 452;
             double lbs = converter.LeftToRight(kg);
             Console.WriteLine("Weight in pounds is " + lbs);
 
@@ -29,7 +29,14 @@ namespace UnitConversionExample {
             converter.AddSynonym("kg", "MTOW (KG)");
             converter.UnitLeft = unitFromDatabase;
             double mtowLBs = converter.LeftToRight(mtowKG);
-            Console.Write("MTOW (KG) in lbs is " + mtowLBs);
+            Console.WriteLine("MTOW (KG) in lbs is " + mtowLBs);
+
+            // Add a new unit with a custom conversion factor
+            converter.AddUnit("Chuck Norris", 9001);
+            converter.UnitRight = "Chuck Norris";
+            kg = 7;
+            var chucks = converter.LeftToRight(kg);
+            Console.WriteLine("7 Kg is equal to " + lbs + " chucks");
 
             Console.Read();
         }

@@ -131,9 +131,35 @@ namespace UnitConversion.Base {
             }
         }
 
+        /// <summary>
+        /// Add a new synonym to an existing unit's list of names
+        /// </summary>
+        /// <param name="existingSynonym">Some synonym from an existing unit</param>
+        /// <param name="newSynonym">New synonym to append to the unit</param>
         public void AddSynonym(string existingSynonym, string newSynonym) {
             var factor = Units.FirstOrDefault(f => f.Key.Contains(existingSynonym)).Key;
             factor.Add(newSynonym);
+        }
+
+        /// <summary>
+        /// Add a new unit with a new set of synonyms
+        /// </summary>
+        /// <param name="unitSynonyms"></param>
+        /// <param name="factorFromBaseUnit"></param>
+        public void AddUnit(UnitFactorKeys unitSynonyms, double factorFromBaseUnit) {
+            if (unitSynonyms.Any(s => Units.ContainsUnit(s))) {
+                throw new UnitAlreadyExistsException(unitSynonyms.First(s => Units.ContainsUnit(s)));
+            }
+            Units.Add(unitSynonyms, factorFromBaseUnit);
+        }
+
+        /// <summary>
+        /// Add a new unit
+        /// </summary>
+        /// <param name="unitName"></param>
+        /// <param name="factorFromBaseUnit"></param>
+        public void AddUnit(string unitName, double factorFromBaseUnit) {
+            AddUnit((UnitFactorKeys)unitName, factorFromBaseUnit);
         }
     }
 }

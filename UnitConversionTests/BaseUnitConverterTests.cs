@@ -83,6 +83,21 @@ namespace UnitConversionTests {
             converter.AddSynonym("R", "john cena");
             converter.UnitRight = "john cena";
         }
+
+        [TestMethod()]
+        public void AddUnitTest() {
+            Assert.ThrowsException<UnitNotSupportedException>(() => converter.UnitRight = "purple");
+            converter.AddUnit("purple", 10);
+            converter.UnitLeft = "mid";
+            converter.UnitRight = "purple";
+            Assert.AreEqual(11, converter.LeftToRight(1.1));
+        }
+
+        [TestMethod()]
+        public void AddUnitCrashTest() {
+            converter.AddSynonym("right", "purple");
+            Assert.ThrowsException<UnitAlreadyExistsException>(() => converter.AddUnit("purple", 10));
+        }
     }
 
     class TestConverter : BaseUnitConverter {
