@@ -1,5 +1,12 @@
 ﻿{
-  "version": "1.0.0-*",
+  "title": "UnitConversion",
+  "version": "0.1",
+  "authors": [ "Nick Lucas" ],
+  "copyright": "Stratajet 2016",
+  "packOptions": {
+    "summary": ".Net Unit Converter for .Net Core and .Net Framework",
+    "tags": [ "unit", "converter", "conversion" ]
+  },
 
   "dependencies": {
     "NETStandard.Library": "1.6.0"
