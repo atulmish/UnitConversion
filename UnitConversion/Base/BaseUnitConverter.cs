@@ -81,12 +81,32 @@ namespace UnitConversion.Base {
         }
 
         /// <summary>
+        /// Convert the Unit on the Left to the Unit on the Right
+        /// </summary>
+        /// <param name="value">the Unit's value</param>
+        /// <param name="decimals">how many decimal places to round to</param>
+        /// <returns>The converted value</returns>
+        public double LeftToRight(double value, int decimals) {
+            return Math.Round(LeftToRight(value), decimals);
+        }
+
+        /// <summary>
         /// Convert the Unit on the Right to the Unit on the Left
         /// </summary>
         /// <param name="value">the Unit's value</param>
         /// <returns>The converted value</returns>
         public double RightToLeft(double value) {
             return AToB(value, UnitRight, UnitLeft);
+        }
+
+        /// <summary>
+        /// Convert the Unit on the Right to the Unit on the Left
+        /// </summary>
+        /// <param name="value">the Unit's value</param>
+        /// <param name="decimals">how many decimal places to round to</param>
+        /// <returns>The converted value</returns>
+        public double RightToLeft(double value, int decimals) {
+            return Math.Round(RightToLeft(value), decimals);
         }
 
         private double AToB(double value, string startUnit, string endUnit) {

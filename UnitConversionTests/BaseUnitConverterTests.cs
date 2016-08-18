@@ -33,6 +33,16 @@ namespace UnitConversionTests {
         }
 
         [TestMethod()]
+        public void LeftToRightRoundingTest() {
+            double input;
+            double expected;
+
+            input = 15.678;
+            expected = 23.5; //23.517
+            Assert.AreEqual(expected, converter.LeftToRight(input, 1));
+        }
+
+        [TestMethod()]
         public void RightToLeftTest() {
             double input;
             double expected;
@@ -40,6 +50,16 @@ namespace UnitConversionTests {
             input = 15;
             expected = 10;
             Assert.AreEqual(expected, converter.RightToLeft(input));
+        }
+
+        [TestMethod()]
+        public void RightToLeftRoundingTest() {
+            double input;
+            double expected;
+
+            input = 15.678;
+            expected = 10.5; //10.452
+            Assert.AreEqual(expected, converter.RightToLeft(input, 1));
         }
     }
 
