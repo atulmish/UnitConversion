@@ -61,13 +61,26 @@ namespace UnitConversionTests {
             expected = 10.5; //10.452
             Assert.AreEqual(expected, converter.RightToLeft(input, 1));
         }
+
+        [TestMethod()]
+        public void MultipleKeysTest() {
+            double input;
+            double expected;
+
+            input = 15.678;
+            expected = 10.5; //10.452
+            Assert.AreEqual(expected, converter.RightToLeft(input, 1));
+
+            converter.UnitLeft = "L";
+            Assert.AreEqual(expected, converter.RightToLeft(input, 1));
+        }
     }
 
     class TestConverter : BaseUnitConverter {
         public TestConverter() {
             var units = new UnitFactors("mid") {
                 { "mid", 1 },
-                { "left", 2 },
+                { new UnitFactorKeys("left", "l"), 2 },
                 { "right", 3 },
             };
             Instantiate(units, "left", "right");

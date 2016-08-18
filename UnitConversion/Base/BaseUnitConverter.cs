@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace UnitConversion.Base {
     public abstract class BaseUnitConverter : IUnitConverter {
+        protected void Instantiate(UnitFactors conversionFactors) {
+            Units = conversionFactors;
+        }
         protected void Instantiate(UnitFactors conversionFactors, string leftUnit, string rightUnit) {
             Units = conversionFactors;
 
@@ -38,7 +41,7 @@ namespace UnitConversion.Base {
                 }
                 return unitLeft;
             }
-            private set {
+            set {
                 ValidateUnit(value);
                 unitLeft = value;
             }
@@ -55,7 +58,7 @@ namespace UnitConversion.Base {
                 }
                 return unitRight;
             }
-            private set {
+            set {
                 ValidateUnit(value);
                 unitRight = value;
             }
@@ -118,8 +121,14 @@ namespace UnitConversion.Base {
 
         // ** UNIT FACTORS **
 
-        public IEnumerable<UnitFactorKeys> SupportedUnits() {
-            return Units.Keys.AsEnumerable();
+        /// <summary>
+        /// Get an enumerable of all the UnitFactorKeys, which contain synonyms for each unit
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<UnitFactorKeys> SupportedUnits {
+            get {
+                return Units.Keys.AsEnumerable();
+            }
         }
     }
 }
