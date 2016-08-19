@@ -9,7 +9,15 @@ namespace UnitConversion.Base {
             BaseUnit = baseUnit;
         }
 
-        protected string BaseUnit;
+        private string _baseUnit;
+        public string BaseUnit {
+            get {
+                return _baseUnit;
+            }
+            private set {
+                _baseUnit = value;
+            }
+        }
 
         // Find the key or null for a given unit
         internal UnitFactorSynonyms FindUnit(UnitFactorSynonyms synonyms) {
