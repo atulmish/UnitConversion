@@ -1,4 +1,8 @@
-﻿### Unit Conversion
+﻿[![Build status](https://ci.appveyor.com/api/projects/status/9oix5m8lgqybda72/branch/master?svg=true)](https://ci.appveyor.com/project/Stratajet/unit-conversion/branch/master)
+[![NuGet](https://img.shields.io/nuget/v/UnitConversion.svg?maxAge=2592000)](https://www.nuget.org/packages/UnitConversion)
+[![MIT License](https://img.shields.io/github/license/Stratajet/UnitConversion.svg)](https://raw.githubusercontent.com/Stratajet/UnitConversion/master/LICENSE)
+
+### Unit Conversion
 
 An expansible dotnet class library intended to fill the gap of a converter library which supports all modern dotnet platforms
 * .Net Framework 4.0+
