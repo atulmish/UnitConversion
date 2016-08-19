@@ -26,7 +26,7 @@ test_script:
   - dotnet test .\UnitConversionTests\
 
 after_test:
-  - dotnet pack .\UnitConversion\ --configuration=Release --output=".\Nuget\"
+  - dotnet pack .\UnitConversion\ --configuration=Release --output=".\Nuget\ "
 
 artifacts:
   - path: .\Nuget\*.nupkg
