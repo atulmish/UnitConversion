@@ -18,8 +18,8 @@ before_build:
   - dotnet restore .\UnitConversionTests\
 
 build_script:
-  - dotnet build LimeBean.NetCore\LimeBean
-  - dotnet build LimeBean.NetCore\LimeBean.Tests
+  - dotnet build .\UnitConversion\
+  - dotnet build .\UnitConversion\
 
 test_script:
   # .NET Core
