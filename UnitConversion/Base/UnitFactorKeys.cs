@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace UnitConversion.Base {
-    public class UnitFactorKeys : List<string> {
+    public class UnitFactorKeys {
+        List<string> _keys = new List<string>();
+
         public UnitFactorKeys() { }
         public UnitFactorKeys(params string[] items) {
-            AddRange(items);
+            _keys.AddRange(items);
         }
 
         // Allow strings to be interpreted as a UnitDictionaryKey
@@ -16,7 +18,14 @@ namespace UnitConversion.Base {
         }
 
         public override string ToString() {
-            return String.Join(", ", this);
+            return String.Join(", ", _keys);
+        }
+
+        public void AddSynonym(string synonym) {
+            if (Contains(synonym)) {
+                throw new UnitAlreadyExistsException(synonym);
+            }
+            _keys.Add(synonym);
         }
 
 
@@ -25,19 +34,19 @@ namespace UnitConversion.Base {
         /// </summary>
         /// <param name="synonym">Name of a unit</param>
         public bool Contains(UnitFactorKeys keys) {
-            return keys.Any(synonym => this.Contains(synonym));
+            return _keys.Any(synonym => keys.Contains(synonym));
         }
 
         /// <summary>
         /// Find if some synonym is included in this UnitFactor
         /// </summary>
         /// <param name="synonym">Name of a unit</param>
-        public new bool Contains(string synonym) {
-            return this.Contains(synonym, StringComparer.CurrentCultureIgnoreCase);
+        public bool Contains(string synonym) {
+            return _keys.Contains(synonym, StringComparer.CurrentCultureIgnoreCase);
         }
         
         public override int GetHashCode() {
-            return base.GetHashCode();
+            return _keys.GetHashCode();
         }
     }
 }

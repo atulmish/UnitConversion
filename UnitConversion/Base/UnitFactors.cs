@@ -16,8 +16,8 @@ namespace UnitConversion.Base {
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public bool ContainsUnit(UnitFactorKeys key) {
-            return this.Any(factor => factor.Key.Contains(key));
+        public UnitFactorKeys FindUnit(UnitFactorKeys key) {
+            return this.Keys.FirstOrDefault(factor => factor.Contains(key));
         }
 
         /// <summary>
@@ -25,8 +25,8 @@ namespace UnitConversion.Base {
         /// </summary>
         /// <param name="synonym"></param>
         /// <returns></returns>
-        public bool ContainsUnit(string synonym) {
-            return ContainsUnit((UnitFactorKeys)synonym);
+        public UnitFactorKeys FindUnit(string synonym) {
+            return FindUnit((UnitFactorKeys)synonym);
         }
     }
 }

@@ -66,7 +66,7 @@ namespace UnitConversion.Base {
         private string unitRight;
 
         private void ValidateUnit(string unit) {
-            if (false == Units.ContainsUnit(unit)) {
+            if (null == Units.FindUnit(unit)) {
                 throw new UnitNotSupportedException(unit);
             }
         }
@@ -138,7 +138,7 @@ namespace UnitConversion.Base {
         /// <param name="newSynonym">New synonym to append to the unit</param>
         public void AddSynonym(string existingSynonym, string newSynonym) {
             var factor = Units.FirstOrDefault(f => f.Key.Contains(existingSynonym)).Key;
-            factor.Add(newSynonym);
+            factor.AddSynonym(newSynonym);
         }
 
         /// <summary>
@@ -147,8 +147,8 @@ namespace UnitConversion.Base {
         /// <param name="unitSynonyms"></param>
         /// <param name="factorFromBaseUnit"></param>
         public void AddUnit(UnitFactorKeys unitSynonyms, double factorFromBaseUnit) {
-            if (unitSynonyms.Any(s => Units.ContainsUnit(s))) {
-                throw new UnitAlreadyExistsException(unitSynonyms.First(s => Units.ContainsUnit(s)));
+            if (Units.FindUnit(unitSynonyms) != null) {
+                throw new UnitAlreadyExistsException(unitSynonyms.ToString());
             }
             Units.Add(unitSynonyms, factorFromBaseUnit);
         }
