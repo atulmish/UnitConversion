@@ -33,8 +33,8 @@ namespace UnitConversion.Base {
         }
 
         // Find if some synonym of a given UnitFactor is included in this UnitFactor
-        internal bool Contains(UnitFactorSynonyms keys) {
-            return _synonyms.Any(synonym => keys.Contains(synonym));
+        internal bool Contains(UnitFactorSynonyms synonyms) {
+            return _synonyms.Any(synonym => synonyms.Contains(synonym));
         }
 
         // Find if some synonym is included in this UnitFactor
@@ -54,8 +54,8 @@ namespace UnitConversion.Base {
         }
 
         // Allow strings to be interpreted as a UnitDictionaryKey
-        public static implicit operator UnitFactorSynonyms(string str) {
-            return new UnitFactorSynonyms(str);
+        public static implicit operator UnitFactorSynonyms(string synonym) {
+            return new UnitFactorSynonyms(synonym);
         }
     }
 }

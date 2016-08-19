@@ -12,15 +12,15 @@ namespace UnitConversion.Base {
         protected string BaseUnit;
 
         // Find the key or null for a given unit
-        internal UnitFactorSynonyms FindUnit(UnitFactorSynonyms key) {
-            return this.Keys.FirstOrDefault(factor => factor.Contains(key));
+        internal UnitFactorSynonyms FindUnit(UnitFactorSynonyms synonyms) {
+            return this.Keys.FirstOrDefault(factor => factor.Contains(synonyms));
         }
 
         // Get the factor for a given unit
-        internal double FindFactor(UnitFactorSynonyms key) {
-            var unit = this.FirstOrDefault(factor => factor.Key.Contains(key));
+        internal double FindFactor(UnitFactorSynonyms synonyms) {
+            var unit = this.FirstOrDefault(factor => factor.Key.Contains(synonyms));
             if (unit.Key == null) {
-                throw new UnitNotSupportedException(key.ToString());
+                throw new UnitNotSupportedException(synonyms.ToString());
             }
             return unit.Value;
         }
