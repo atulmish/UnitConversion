@@ -1,4 +1,4 @@
-﻿[![AppVeyor](https://img.shields.io/appveyor/ci/Stratajet/unit-conversion.svg?maxAge=2592000)](https://ci.appveyor.com/project/Stratajet/unit-conversion)
+﻿[![Build status](https://ci.appveyor.com/api/projects/status/9oix5m8lgqybda72?svg=true)](https://ci.appveyor.com/project/Stratajet/unit-conversion)
 [![NuGet](https://img.shields.io/nuget/v/UnitConversion.svg?maxAge=2592000)](https://www.nuget.org/packages/UnitConversion)
 [![MIT License](https://img.shields.io/github/license/Stratajet/UnitConversion.svg)](https://raw.githubusercontent.com/Stratajet/UnitConversion/master/LICENSE)
 
