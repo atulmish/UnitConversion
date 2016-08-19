@@ -15,7 +15,7 @@ namespace UnitConversion.Base {
         /// <summary>
         /// The list of synonyms this object holds
         /// </summary>
-        IEnumerable<string> Synonyms {
+        public IEnumerable<string> Synonyms {
             get {
                 return _synonyms.AsEnumerable();
             }
@@ -34,7 +34,12 @@ namespace UnitConversion.Base {
 
         // Find if some synonym of a given UnitFactor is included in this UnitFactor
         internal bool Contains(UnitFactorSynonyms synonyms) {
-            return _synonyms.Any(synonym => synonyms.Contains(synonym));
+            foreach (var syn in synonyms.Synonyms) {
+                if (this.Contains(syn)) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         // Find if some synonym is included in this UnitFactor

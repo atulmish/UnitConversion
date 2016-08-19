@@ -98,6 +98,12 @@ namespace UnitConversionTests {
             converter.AddSynonym("right", "purple");
             Assert.ThrowsException<UnitAlreadyExistsException>(() => converter.AddUnit("purple", 10));
         }
+
+        [TestMethod()]
+        public void SupportedUnits() {
+            Assert.IsTrue(converter.SupportedUnits.Any(s => s.Synonyms.Contains("left")));
+            Assert.IsFalse(converter.SupportedUnits.Any(s => s.Synonyms.Contains("not_a_unit")));
+        }
     }
 
     class TestConverter : BaseUnitConverter {
