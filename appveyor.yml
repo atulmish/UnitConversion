@@ -14,12 +14,12 @@ before_build:
   - dotnet --version
 
   # Restore packages
-  - dotnet restore .\UnitConversion
-  - dotnet restore .\UnitConversionTests
+  - dotnet restore .\UnitConversion\project.json
+  - dotnet restore .\UnitConversionTests\project.json
 
 build_script:
-  - dotnet build .\UnitConversion
-  - dotnet build .\UnitConversion
+  - dotnet build .\UnitConversion\project.json
+  - dotnet build .\UnitConversion\project.json
 
 test_script:
   # .NET Core
