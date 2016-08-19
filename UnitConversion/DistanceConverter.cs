@@ -13,10 +13,10 @@ namespace UnitConversion {
                 { new UnitFactorSynonyms("km", "kilometre"), 0.001 },
                 { new UnitFactorSynonyms("cm", "centimetre"), 100 },
                 { new UnitFactorSynonyms("mm", "millimetre"), 1000 },
-                { new UnitFactorSynonyms("ft", "foot", "feet"), 3.28084 },
-                { new UnitFactorSynonyms("yd", "yard"), 1.09361 },
-                { new UnitFactorSynonyms("mile"), 0.000621371 },
-                { new UnitFactorSynonyms("in", "inch"), 39.3701 },
+                { new UnitFactorSynonyms("ft", "foot", "feet"), 1250 / 381 },
+                { new UnitFactorSynonyms("yd", "yard"), 1250 / 1143 },
+                { new UnitFactorSynonyms("mile"), 125 / 201168 },
+                { new UnitFactorSynonyms("in", "inch"), 5000 / 127 },
             };
             Instantiate(units, leftUnit, rightUnit);
         }
