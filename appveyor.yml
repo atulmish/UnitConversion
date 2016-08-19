@@ -14,19 +14,19 @@ before_build:
   - dotnet --version
 
   # Restore packages
-  - dotnet restore .\UnitConversion\
-  - dotnet restore .\UnitConversionTests\
+  - dotnet restore .\UnitConversion
+  - dotnet restore .\UnitConversionTests
 
 build_script:
-  - dotnet build .\UnitConversion\
-  - dotnet build .\UnitConversion\
+  - dotnet build .\UnitConversion
+  - dotnet build .\UnitConversion
 
 test_script:
   # .NET Core
-  - dotnet test .\UnitConversionTests\
+  - dotnet test .\UnitConversionTests
 
 after_test:
-  - dotnet pack .\UnitConversion\ --configuration=Release --output=".\Nuget\ "
+  - dotnet pack .\UnitConversion --configuration=Release --output=".\Nuget"
 
 artifacts:
   - path: .\Nuget\*.nupkg
