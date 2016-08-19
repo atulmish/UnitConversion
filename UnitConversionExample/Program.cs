@@ -22,7 +22,7 @@ namespace UnitConversionExample {
             lbs = converter.LeftToRight(kg, 2);
             Console.WriteLine("Weight in pounds is " + lbs);
 
-            // You can easily customise converters to support synonyms used in business logic
+            // You can easily customise converters to support synonyms used in business logic, such as those stored on a database
             double mtowKG = 3000;
             converter.AddSynonym("kg", "MTOW (KG)");
             converter.UnitLeft = "MTOW (KG)";

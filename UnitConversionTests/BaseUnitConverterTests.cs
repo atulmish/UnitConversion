@@ -104,7 +104,7 @@ namespace UnitConversionTests {
         public TestConverter() {
             var units = new UnitFactors("mid") {
                 { "mid", 1 },
-                { new UnitFactorKeys("left", "l"), 2 },
+                { new UnitFactorSynonyms("left", "l"), 2 },
                 { "right", 3 },
             };
             Instantiate(units, "left", "right");

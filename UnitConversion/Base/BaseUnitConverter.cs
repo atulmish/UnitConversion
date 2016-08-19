@@ -122,7 +122,7 @@ namespace UnitConversion.Base {
         /// Get an enumerable of all the UnitFactorKeys, which contain synonyms for each unit
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<UnitFactorKeys> SupportedUnits {
+        public IEnumerable<UnitFactorSynonyms> SupportedUnits {
             get {
                 return Units.Keys.AsEnumerable();
             }
@@ -142,20 +142,20 @@ namespace UnitConversion.Base {
         /// <summary>
         /// Add a new unit with a new set of synonyms
         /// </summary>
-        /// <param name="unitSynonyms">Object of synonyms</param>
-        /// <param name="factorFromBaseUnit"></param>
-        public void AddUnit(UnitFactorKeys unitSynonyms, double factorFromBaseUnit) {
-            ValidateNewSynonym(unitSynonyms);
-            Units.Add(unitSynonyms, factorFromBaseUnit);
+        /// <param name="synonyms">Object of synonyms</param>
+        /// <param name="factor"></param>
+        public void AddUnit(UnitFactorSynonyms synonyms, double factor) {
+            ValidateNewSynonym(synonyms);
+            Units.Add(synonyms, factor);
         }
 
         /// <summary>
         /// Add a new unit
         /// </summary>
-        /// <param name="unitName"></param>
-        /// <param name="factorFromBaseUnit"></param>
-        public void AddUnit(string unitName, double factorFromBaseUnit) {
-            AddUnit((UnitFactorKeys)unitName, factorFromBaseUnit);
+        /// <param name="name"></param>
+        /// <param name="factor"></param>
+        public void AddUnit(string name, double factor) {
+            AddUnit((UnitFactorSynonyms)name, factor);
         }
 
 
@@ -169,7 +169,7 @@ namespace UnitConversion.Base {
         }
 
         // Throw if a given unit does exist
-        private void ValidateNewSynonym(UnitFactorKeys synonyms) {
+        private void ValidateNewSynonym(UnitFactorSynonyms synonyms) {
             var preExistingUnit = Units.FindUnit(synonyms);
             if (preExistingUnit != null) {
                 throw new UnitAlreadyExistsException(preExistingUnit.ToString());
