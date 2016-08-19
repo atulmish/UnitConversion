@@ -5,9 +5,19 @@ using System.Threading.Tasks;
 
 namespace UnitConversion.Base {
     public abstract class BaseUnitConverter : IUnitConverter {
+        /// <summary>
+        /// Set Unit conversions. Left/Right conversion will default to UnitFactors.BaseUnit
+        /// </summary>
         protected void Instantiate(UnitFactors conversionFactors) {
             Units = conversionFactors;
+
+            UnitLeft = Units.BaseUnit;
+            unitRight = units.BaseUnit;
         }
+
+        /// <summary>
+        /// Set Unit conversions and initial Left/Right conversion
+        /// </summary>
         protected void Instantiate(UnitFactors conversionFactors, string leftUnit, string rightUnit) {
             Units = conversionFactors;
 
