@@ -49,9 +49,8 @@ Console.Read();
 ****
 ##### Converters are easy to define and contribute to
 ```C#
-public class DistanceConverter : BaseUnitConverter {
-    public DistanceConverter(string leftUnit, string rightUnit) {
-        var units = new UnitFactors("m") {
+    public class DistanceConverter : BaseUnitConverter {
+        UnitFactors units = new UnitFactors("m") {
             { new UnitFactorSynonyms("m", "metre"), 1 },
             { new UnitFactorSynonyms("km", "kilometre"), 0.001 },
             { new UnitFactorSynonyms("cm", "centimetre"), 100 },
@@ -61,7 +60,12 @@ public class DistanceConverter : BaseUnitConverter {
             { "mile", 125d / 201168 },
             { new UnitFactorSynonyms("in", "inch"), 5000d / 127 },
         };
-        Instantiate(units, leftUnit, rightUnit);
+
+        public DistanceConverter(string leftUnit, string rightUnit) {
+            Instantiate(units, leftUnit, rightUnit);
+        }
+        public DistanceConverter() {
+            Instantiate(units);
+        }
     }
-}
 ```
