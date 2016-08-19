@@ -49,14 +49,17 @@ Console.Read();
 ****
 ##### Converters are easy to define and contribute to
 ```C#
-public class MassConverter : BaseUnitConverter {
-    public MassConverter(string leftUnit, string rightUnit) {
-        var units = new UnitFactors("kg") {
-            { new UnitFactorSynonyms("kg", "kilogram"), 1 },
-            { new UnitFactorSynonyms("gram", "g"), 1000 },
-            { new UnitFactorSynonyms("lbs", "pounds"), 100000000 / 45359237 },
-            { new UnitFactorSynonyms("stn", "stone"), 50000000 / 317514659 },
-            { new UnitFactorSynonyms("ounce"), 1600000000 / 45359237 },
+public class DistanceConverter : BaseUnitConverter {
+    public DistanceConverter(string leftUnit, string rightUnit) {
+        var units = new UnitFactors("m") {
+            { new UnitFactorSynonyms("m", "metre"), 1 },
+            { new UnitFactorSynonyms("km", "kilometre"), 0.001 },
+            { new UnitFactorSynonyms("cm", "centimetre"), 100 },
+            { new UnitFactorSynonyms("mm", "millimetre"), 1000 },
+            { new UnitFactorSynonyms("ft", "foot", "feet"), 1250d / 381 },
+            { new UnitFactorSynonyms("yd", "yard"), 1250d / 1143 },
+            { "mile", 125d / 201168 },
+            { new UnitFactorSynonyms("in", "inch"), 5000d / 127 },
         };
         Instantiate(units, leftUnit, rightUnit);
     }
