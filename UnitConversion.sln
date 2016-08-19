@@ -7,6 +7,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "UnitConversion", "UnitConve
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E40C0E9D-FB41-491E-A2AB-E143EB8A47E8}"
 	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
 		..\global.json = ..\global.json
 		Readme.md = Readme.md
 	EndProjectSection

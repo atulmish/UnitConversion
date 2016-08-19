@@ -4,12 +4,12 @@
   "authors": [ "Nick Lucas" ],
   "copyright": "Stratajet 2016",
   "packOptions": {
-    "summary": ".Net Unit Converter for .Net Core and .Net Framework",
+    "summary": "Unit Conversion Library for .Net Core and .Net Framework",
     "repository": {
       "type": "git",
-      "url": "https://github.com/Stratajet/unit-conversion"
+      "url": "https://github.com/Stratajet/UnitConversion"
     },
-    "projectUrl": "https://github.com/Stratajet/unit-conversion",
+    "projectUrl": "https://github.com/Stratajet/UnitConversion",
     "tags": [ "unit", "converter", "conversion" ]
   },
 
