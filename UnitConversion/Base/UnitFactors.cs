@@ -11,22 +11,18 @@ namespace UnitConversion.Base {
 
         protected string BaseUnit;
 
-        /// <summary>
-        /// Find if the given unit is supported
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public UnitFactorKeys FindUnit(UnitFactorKeys key) {
+        // Find the key or null for a given unit
+        internal UnitFactorKeys FindUnit(UnitFactorKeys key) {
             return this.Keys.FirstOrDefault(factor => factor.Contains(key));
         }
 
-        /// <summary>
-        /// Find if the given unit is supported
-        /// </summary>
-        /// <param name="synonym"></param>
-        /// <returns></returns>
-        public UnitFactorKeys FindUnit(string synonym) {
-            return FindUnit((UnitFactorKeys)synonym);
+        // Get the factor for a given unit
+        internal double FindFactor(UnitFactorKeys key) {
+            var unit = this.FirstOrDefault(factor => factor.Key.Contains(key));
+            if (unit.Key == null) {
+                throw new UnitNotSupportedException(key.ToString());
+            }
+            return unit.Value;
         }
     }
 }

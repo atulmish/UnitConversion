@@ -33,7 +33,7 @@ namespace UnitConversion.Base {
         /// Find if some synonym of a given UnitFactor is included in this UnitFactor
         /// </summary>
         /// <param name="synonym">Name of a unit</param>
-        public bool Contains(UnitFactorKeys keys) {
+        internal bool Contains(UnitFactorKeys keys) {
             return _keys.Any(synonym => keys.Contains(synonym));
         }
 
@@ -41,7 +41,7 @@ namespace UnitConversion.Base {
         /// Find if some synonym is included in this UnitFactor
         /// </summary>
         /// <param name="synonym">Name of a unit</param>
-        public bool Contains(string synonym) {
+        internal bool Contains(string synonym) {
             return _keys.Contains(synonym, StringComparer.CurrentCultureIgnoreCase);
         }
         
