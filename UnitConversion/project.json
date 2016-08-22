@@ -13,16 +13,12 @@
     "tags": [ "unit", "converter", "conversion" ]
   },
 
-  "dependencies": {
-    "NETStandard.Library": "1.6.0"
-  },
-
   "frameworks": {
     "netstandard1.6": {
-      "imports": "dnxcore50"
+      "dependencies": {
+        "NETStandard.Library": "1.6.0"
+      }
     },
-    "net40": {
-
-    }
+    "net40": { }
   }
 }
