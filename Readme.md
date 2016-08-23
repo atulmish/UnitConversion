@@ -4,68 +4,72 @@
 
 ### Unit Conversion
 
-An expansible dotnet class library intended to fill the gap of a converter library which supports all modern dotnet platforms
+An expansible dotnet class library with support for all modern .Net platforms
 * .Net Framework 4.0+
-* .Net Core
+* .Net Core 
+* .Net Standard 1.6+
 
-UnitConversion is designed for programmatic use, and to be both expansible and flexible to use with custom business logic
+UnitConversion is designed to be expansible through factories or through concrete converter implementations.
+
+Actual implementations are currently limited, but include:
+* [MassConverter](https://github.com/Stratajet/UnitConversion/blob/master/UnitConversion/MassConverter.cs)
+* [DistanceConverter](https://github.com/Stratajet/UnitConversion/blob/master/UnitConversion/DistanceConverter.cs)
 
 ***
 ##### Example
 
 ```C#
-// Simple programmatic approach to conversion between units
+// Simple programmatic approach to conversion, using string `Synonyms`
 var converter = new MassConverter("kg", "lbs");
-double kg = 452;
-double lbs = converter.LeftToRight(kg);
-Console.WriteLine("452kg in pounds is " + lbs);
+kg = 452;
+lb = converter.LeftToRight(kg);
+Console.WriteLine("452kg in pounds is " + lb);
 
 // Converting both ways is easy
-double originalKgs = converter.RightToLeft(lbs);
-Console.WriteLine("Converted back: " + originalKgs);
+kg = converter.RightToLeft(lb);
+Console.WriteLine("Converted back: " + kg);
 
-// You may also want a simpler level of precision
-lbs = converter.LeftToRight(kg, 2);
-Console.WriteLine("452kg in pounds (to 2 decimal places) is " + lbs);
+// Rounding is part of conversion
+lb = converter.LeftToRight(kg, 2);
+Console.WriteLine("452kg in pounds (to 2 decimal places) is " + lb);
 
-// You can easily customise converters to support synonyms used in business logic, such as those stored on a database
-string myUnitName = "MTOW (KG)";
+// You can easily customise converters to support Synonyms used in 
+// business logic, such as those stored on a database
+string mtowUnit = "MTOW (KG)";
 kg = 3000;
-converter.AddSynonym("kg", myUnitName);
-converter.UnitLeft = myUnitName;
-lbs = converter.LeftToRight(kg);
-Console.WriteLine("3000 MTOW (KG) in lbs is " + lbs);
+converter.AddSynonym("kg", mtowUnit);
+converter.UnitLeft = mtowUnit;
+lb = converter.LeftToRight(kg);
+Console.WriteLine("3000 MTOW (KG) in lbs is " + lb);
 
 // Add a new unit with a custom conversion factor
 converter.AddUnit("Chuck Norris", 9001);
 converter.UnitRight = "Chuck Norris";
 kg = 7;
 var chucks = converter.LeftToRight(kg);
-Console.WriteLine("7kg is equal to " + lbs + " chucks");
-
-Console.Read();
+Console.WriteLine("7kg is equal to " + lb + " chucks");
 ```
 
 ****
 ##### Converters are easy to define and contribute to
 ```C#
-    public class DistanceConverter : BaseUnitConverter {
-        UnitFactors units = new UnitFactors("m") {
-            { new UnitFactorSynonyms("m", "metre"), 1 },
-            { new UnitFactorSynonyms("km", "kilometre"), 0.001 },
-            { new UnitFactorSynonyms("cm", "centimetre"), 100 },
-            { new UnitFactorSynonyms("mm", "millimetre"), 1000 },
-            { new UnitFactorSynonyms("ft", "foot", "feet"), 1250d / 381 },
-            { new UnitFactorSynonyms("yd", "yard"), 1250d / 1143 },
-            { "mile", 125d / 201168 },
-            { new UnitFactorSynonyms("in", "inch"), 5000d / 127 },
-        };
+public class DistanceConverter : BaseUnitConverter {
+    UnitFactors units = new UnitFactors("m") {
+        { new UnitFactorSynonyms("m", "metre"), 1 },
+        { new UnitFactorSynonyms("km", "kilometre"), 0.001 },
+        { new UnitFactorSynonyms("cm", "centimetre"), 100 },
+        { new UnitFactorSynonyms("mm", "millimetre"), 1000 },
+        { new UnitFactorSynonyms("ft", "foot", "feet"), 1250d / 381 },
+        { new UnitFactorSynonyms("yd", "yard"), 1250d / 1143 },
+        { "mile", 125d / 201168 },
+        { new UnitFactorSynonyms("in", "inch"), 5000d / 127 },
+    };
 
-        public DistanceConverter(string leftUnit, string rightUnit) {
-            Instantiate(units, leftUnit, rightUnit);
-        }
-        public DistanceConverter() {
-            Instantiate(units);
-        }
+    public DistanceConverter(string leftUnit, string rightUnit) {
+        Instantiate(units, leftUnit, rightUnit);
     }
+    public DistanceConverter() {
+        Instantiate(units);
+    }
+}
 ```
