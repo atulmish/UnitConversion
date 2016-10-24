@@ -1,4 +1,4 @@
-﻿{
+{
   "title": "UnitConversion",
   "version": "0.1.3-*",
   "authors": [ "Nick Lucas" ],
@@ -12,13 +12,18 @@
     "projectUrl": "https://github.com/Stratajet/UnitConversion",
     "tags": [ "unit", "converter", "conversion" ]
   },
-
   "frameworks": {
-    "netstandard1.6": {
+    "netstandard1.3": {
+      "imports": [ "dnxcore50" ],
       "dependencies": {
-        "NETStandard.Library": "1.6.0"
+        "System.Linq": "4.1.0",
+        "System.Runtime": "4.1.0",
+        "System.Runtime.Extensions": "4.1.0",
+        "System.Runtime.WindowsRuntime": "4.0.10"
       }
     },
-    "net40": { }
+    "net40": {
+
+    }
   }
 }
