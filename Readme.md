@@ -48,7 +48,7 @@ converter.AddUnit("Chuck Norris", 9001);
 converter.UnitRight = "Chuck Norris";
 kg = 7;
 var chucks = converter.LeftToRight(kg);
-Console.WriteLine("7kg is equal to " + lb + " chucks");
+Console.WriteLine("7kg is equal to " + chucks + " chucks");
 ```
 
 ****
