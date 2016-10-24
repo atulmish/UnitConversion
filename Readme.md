@@ -6,14 +6,15 @@
 
 An expansible dotnet class library with support for all modern .Net platforms
 * .Net Framework 4.0+
-* .Net Core 
-* .Net Standard 1.6+
+* .Net Standard 1.3+ (.Net 4.5.1+ and .Net Core)
 
 UnitConversion is designed to be expansible through factories or through concrete converter implementations.
 
 Actual implementations are currently limited, but include:
 * [MassConverter](https://github.com/Stratajet/UnitConversion/blob/master/UnitConversion/MassConverter.cs)
 * [DistanceConverter](https://github.com/Stratajet/UnitConversion/blob/master/UnitConversion/DistanceConverter.cs)
+
+Pull requests with custom implementations are welcome!
 
 ***
 ##### Example
