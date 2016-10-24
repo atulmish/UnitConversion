@@ -1,6 +1,6 @@
 {
   "title": "UnitConversion",
-  "version": "0.1.3-*",
+  "version": "0.1.4-*",
   "authors": [ "Nick Lucas" ],
   "copyright": "Stratajet 2016",
   "packOptions": {
