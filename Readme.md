@@ -4,7 +4,7 @@
 
 ### Unit Conversion
 
-An expansible dotnet class library with support for all modern .Net platforms
+An expansible .Net class library with support for all modern platforms
 * .Net Framework 4.0+
 * .Net Standard 1.3+ (.Net 4.5.1+ and .Net Core)
 
