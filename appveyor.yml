@@ -22,11 +22,10 @@ build_script:
   - dotnet build .\UnitConversionTests\UnitConversionTests.csproj
 
 test_script:
-  # .NET Core
   - dotnet test .\UnitConversionTests\UnitConversionTests.csproj
 
 after_test:
-  - dotnet pack .\UnitConversion\UnitConversion.csproj --configuration=Release --output=".\Nuget"
+  - dotnet pack .\UnitConversion\UnitConversion.csproj --configuration=Release --output="%USERPROFILE%\Artifacts"
 
 artifacts:
-  - path: .\Nuget\*.nupkg
+  - path: %USERPROFILE%\Artifacts\*.nupkg
