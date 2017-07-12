@@ -8,25 +8,25 @@ cache:
 
 before_build:
   # Install dotnet cli
-  - appveyor DownloadFile https://raw.githubusercontent.com/dotnet/cli/v1.0.0-preview2/scripts/obtain/dotnet-install.ps1
+  - appveyor DownloadFile https://raw.githubusercontent.com/dotnet/cli/v1.0.4/scripts/obtain/dotnet-install.ps1
   - powershell -File dotnet-install.ps1
   - set PATH=%PATH%;%LOCALAPPDATA%\Microsoft\dotnet
   - dotnet --version
 
   # Restore packages
-  - dotnet restore .\UnitConversion\project.json
-  - dotnet restore .\UnitConversionTests\project.json
+  - dotnet restore .\UnitConversion\UnitConversion.csproj
+  - dotnet restore .\UnitConversionTests\UnitConversionTests.csproj
 
 build_script:
-  - dotnet build .\UnitConversion\project.json
-  - dotnet build .\UnitConversion\project.json
+  - dotnet build .\UnitConversion\UnitConversion.csproj
+  - dotnet build .\UnitConversionTests\UnitConversionTests.csproj
 
 test_script:
   # .NET Core
-  - dotnet test .\UnitConversionTests
+  - dotnet test .\UnitConversionTests\UnitConversionTests.csproj
 
 after_test:
-  - dotnet pack .\UnitConversion --configuration=Release --output=".\Nuget"
+  - dotnet pack .\UnitConversion\UnitConversion.csproj --configuration=Release --output=".\Nuget"
 
 artifacts:
   - path: .\Nuget\*.nupkg
