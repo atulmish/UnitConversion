@@ -25,7 +25,7 @@ namespace UnitConversionTests
 
         [TestMethod()]
         public void m2_km2() {
-            converter = new AreaConverter("m2", "km2");
+            converter = new AreaConverter("m²", "km2");
             double valL = 1000000;
             double valR = 1;
 
@@ -45,7 +45,7 @@ namespace UnitConversionTests
 
         [TestMethod()]
         public void m2_mm2() {
-            converter = new AreaConverter("m2", "mm2");
+            converter = new AreaConverter("m²", "mm2");
             double valL = 1;
             double valR = 1000000;
 
@@ -55,7 +55,7 @@ namespace UnitConversionTests
 
         [TestMethod()]
         public void m2_squareft() {
-            converter = new AreaConverter("m2", "ft2");
+            converter = new AreaConverter("m2", "ft²");
             double valL = 1;
             double valR = 10.76391;
 
@@ -105,7 +105,7 @@ namespace UnitConversionTests
 
         [TestMethod()]
         public void m2_sqmiles() {
-            converter = new AreaConverter("m2", "sq mi");
+            converter = new AreaConverter("m²", "sq mi");
             double valL = 1000000 * 2.589988110336;
             double valR = 1;
 
