@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Copyright>Stratajet 2016</Copyright>
     <AssemblyTitle>UnitConversion</AssemblyTitle>
-    <VersionPrefix>0.2.0</VersionPrefix>
+    <VersionPrefix>0.3.0</VersionPrefix>
     <Authors>Nick Lucas</Authors>
     <TargetFrameworks>netstandard1.3;net40</TargetFrameworks>
     <AssemblyName>UnitConversion</AssemblyName>
