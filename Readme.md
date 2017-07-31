@@ -10,9 +10,11 @@ An expansible .Net class library with support for all modern platforms
 
 UnitConversion is designed to be expansible through factories or through concrete converter implementations.
 
-Actual implementations are currently limited, but include:
+Implementations are currently limited, but include:
 * [MassConverter](https://github.com/Stratajet/UnitConversion/blob/master/UnitConversion/MassConverter.cs)
 * [DistanceConverter](https://github.com/Stratajet/UnitConversion/blob/master/UnitConversion/DistanceConverter.cs)
+* [TimeConverter](https://github.com/Stratajet/UnitConversion/blob/master/UnitConversion/TimeConverter.cs)
+* [AreaConverter](https://github.com/Stratajet/UnitConversion/blob/master/UnitConversion/AreaConverter.cs)
 
 Pull requests with custom implementations are welcome!
 
