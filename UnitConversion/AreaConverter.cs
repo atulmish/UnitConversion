@@ -4,10 +4,10 @@ namespace UnitConversion
 {
     public class AreaConverter : BaseUnitConverter {
         UnitFactors units = new UnitFactors("m²") {
-            { new UnitFactorSynonyms("m²", "m2", "square metre", "centiare"), 1 },
-            { new UnitFactorSynonyms("km²", "km2", "kilometre"), 0.000001 },
-            { new UnitFactorSynonyms("cm²", "cm2", "centimetre"), 10000 },
-            { new UnitFactorSynonyms("mm²", "mm2", "millimetre"), 1000000 },
+            { new UnitFactorSynonyms("m²", "m2", "square metre", "centiare", "square meter"), 1 },
+            { new UnitFactorSynonyms("km²", "km2", "kilometre", "kilometer"), 0.000001 },
+            { new UnitFactorSynonyms("cm²", "cm2", "centimetre", "centimeter"), 10000 },
+            { new UnitFactorSynonyms("mm²", "mm2", "millimetre", "millimeter"), 1000000 },
             { new UnitFactorSynonyms("ft²", "ft2", "square foot", "square feet", "sq ft"), 1d /  0.3048 /  0.3048 },
             { new UnitFactorSynonyms("yd²", "yd2", "sq yd", "square yard"), 1d /  0.9144 /  0.9144},
             { new UnitFactorSynonyms("a", "are"), 0.01 },
