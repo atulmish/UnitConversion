@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UnitConversion;
-using UnitConversion.Base;
 
-namespace UnitConversionTests {
+namespace UnitConversionTests { 
     [TestClass()]
     public class MassConverterTests {
         MassConverter converter = null;
@@ -65,6 +59,26 @@ namespace UnitConversionTests {
 
             Assert.AreEqual(valR, converter.LeftToRight(valL, 3));
             Assert.AreEqual(valL, converter.RightToLeft(valR, 3));
+        }
+
+        [TestMethod()]
+        public void kg_tonnes() {
+            converter = new MassConverter("kg", "t");
+            double valL = 1000;
+            double valR = 1;
+
+            Assert.AreEqual(valR, converter.LeftToRight(valL));
+            Assert.AreEqual(valL, converter.RightToLeft(valR));
+        }
+
+        [TestMethod()]
+        public void kg_centners() {
+            converter = new MassConverter("kg", "centner");
+            double valL = 100;
+            double valR = 1;
+
+            Assert.AreEqual(valR, converter.LeftToRight(valL));
+            Assert.AreEqual(valL, converter.RightToLeft(valR));
         }
     }
 }
