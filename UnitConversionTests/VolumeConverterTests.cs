@@ -16,9 +16,9 @@ namespace UnitConversionTests
         }
 
         [TestMethod()]
-        public void m2_m2()
+        public void l_l()
         {
-            converter = new AreaConverter("m2", "m2");
+            converter = new VolumeConverter("l", "l");
             double valL = 1;
             double valR = 1;
 
@@ -27,102 +27,113 @@ namespace UnitConversionTests
         }
 
         [TestMethod()]
-        public void m2_km2()
+        public void l_cm3()
         {
-            converter = new AreaConverter("m²", "km2");
-            double valL = 1000000;
-            double valR = 1;
+            converter = new VolumeConverter("l", "cm3");
+            double valL = 1;
+            double valR = 1000;
 
             Assert.AreEqual(valR, converter.LeftToRight(valL));
             Assert.AreEqual(valL, converter.RightToLeft(valR));
         }
 
         [TestMethod()]
-        public void m2_cm2()
+        public void l_mm3()
         {
-            converter = new AreaConverter("m2", "cm2");
+            converter = new VolumeConverter("l", "mm3");
             double valL = 1;
-            double valR = 10000;
+            double valR = 1000*1000;
 
             Assert.AreEqual(valR, converter.LeftToRight(valL));
             Assert.AreEqual(valL, converter.RightToLeft(valR));
         }
 
         [TestMethod()]
-        public void m2_mm2()
+        public void l_ft3()
         {
-            converter = new AreaConverter("m²", "mm2");
+            converter = new VolumeConverter("l", "ft3");
             double valL = 1;
-            double valR = 1000000;
+            double valR = 0.0353147;
 
             Assert.AreEqual(valR, converter.LeftToRight(valL));
             Assert.AreEqual(valL, converter.RightToLeft(valR));
         }
 
         [TestMethod()]
-        public void m2_squareft()
+        public void l_in3()
         {
-            converter = new AreaConverter("m2", "ft²");
+            converter = new VolumeConverter("l", "in3");
             double valL = 1;
-            double valR = 10.76391;
-
-            Assert.AreEqual(valR, converter.LeftToRight(valL, 6));
-            Assert.AreEqual(valL, converter.RightToLeft(valR, 6));
-        }
-
-        [TestMethod()]
-        public void m2_squareyd()
-        {
-            converter = new AreaConverter("m2", "square yard");
-            double valL = 1;
-            double valR = 1.195990;
-
-            Assert.AreEqual(valR, converter.LeftToRight(valL, 6));
-            Assert.AreEqual(valL, converter.RightToLeft(valR, 6));
-        }
-
-        [TestMethod()]
-        public void m2_squarein()
-        {
-            converter = new AreaConverter("m2", "square inch");
-            double valL = 1;
-            double valR = 1550.0031;
-
-            Assert.AreEqual(valR, converter.LeftToRight(valL, 4));
-            Assert.AreEqual(valL, converter.RightToLeft(valR, 4));
-        }
-
-        [TestMethod()]
-        public void m2_ares()
-        {
-            converter = new AreaConverter("m2", "are");
-            double valL = 1;
-            double valR = 0.01;
+            double valR = 61.0237;
 
             Assert.AreEqual(valR, converter.LeftToRight(valL));
             Assert.AreEqual(valL, converter.RightToLeft(valR));
         }
 
         [TestMethod()]
-        public void m2_hectares()
+        public void l_imperialpint()
         {
-            converter = new AreaConverter("m2", "hectare");
+            converter = new VolumeConverter("l", "imperial pint");
             double valL = 1;
-            double valR = 0.0001;
+            double valR = 1.75975;
 
             Assert.AreEqual(valR, converter.LeftToRight(valL));
             Assert.AreEqual(valL, converter.RightToLeft(valR));
         }
 
         [TestMethod()]
-        public void m2_sqmiles()
+        public void l_imperialgallon()
         {
-            converter = new AreaConverter("m²", "sq mi");
-            double valL = 1000000 * 2.589988110336;
-            double valR = 1;
+            converter = new VolumeConverter("l", "imperial gallon");
+            double valL = 1;
+            double valR = 0.219969;
 
-            Assert.AreEqual(valR, converter.LeftToRight(valL), 8);
-            Assert.AreEqual(valL, converter.RightToLeft(valR), 8);
+            Assert.AreEqual(valR, converter.LeftToRight(valL));
+            Assert.AreEqual(valL, converter.RightToLeft(valR));
+        }
+
+        [TestMethod()]
+        public void l_imperialquart()
+        {
+            converter = new VolumeConverter("l", "imperial quart");
+            double valL = 1;
+            double valR = 0.879877;
+
+            Assert.AreEqual(valR, converter.LeftToRight(valL));
+            Assert.AreEqual(valL, converter.RightToLeft(valR));
+        }
+
+        [TestMethod()]
+        public void l_uspint()
+        {
+            converter = new VolumeConverter("l", "US pint");
+            double valL = 1;
+            double valR = 2.11337643513819;
+
+            Assert.AreEqual(valR, converter.LeftToRight(valL));
+            Assert.AreEqual(valL, converter.RightToLeft(valR));
+        }
+
+        [TestMethod()]
+        public void l_usgallon()
+        {
+            converter = new VolumeConverter("l", "US gallon");
+            double valL = 1;
+            double valR = 0.264172;
+
+            Assert.AreEqual(valR, converter.LeftToRight(valL));
+            Assert.AreEqual(valL, converter.RightToLeft(valR));
+        }
+
+        [TestMethod()]
+        public void l_usquart()
+        {
+            converter = new VolumeConverter("l", "US quart");
+            double valL = 1;
+            double valR = 2.11338;
+
+            Assert.AreEqual(valR, converter.LeftToRight(valL));
+            Assert.AreEqual(valL, converter.RightToLeft(valR));
         }
     }
 }
