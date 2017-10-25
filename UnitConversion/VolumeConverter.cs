@@ -5,6 +5,7 @@ namespace UnitConversion
     public class VolumeConverter : BaseUnitConverter {
         UnitFactors units = new UnitFactors("l") {
             { new UnitFactorSynonyms("l", "L", "lt", "ltr", "liter", "litre", "dm³", "dm3", "cubic decimetre"), 1 },
+            { new UnitFactorSynonyms("m³", "m3", "cubic metre"), 0.001 },
             { new UnitFactorSynonyms("cm³", "cm3", "cubic centimetre"), 1000 },
             { new UnitFactorSynonyms("mm³", "mm3", "cubic millimetre"), 1000000 },
             { new UnitFactorSynonyms("ft³", "ft3", "cubic foot", "cubic feet", "cu ft"), 0.0353147 },

@@ -27,6 +27,17 @@ namespace UnitConversionTests
         }
 
         [TestMethod()]
+        public void l_m3()
+        {
+            converter = new VolumeConverter("l", "m3");
+            double valL = 1;
+            double valR = 0.001;
+
+            Assert.AreEqual(valR, converter.LeftToRight(valL));
+            Assert.AreEqual(valL, converter.RightToLeft(valR));
+        }
+
+        [TestMethod()]
         public void l_cm3()
         {
             converter = new VolumeConverter("l", "cm3");
