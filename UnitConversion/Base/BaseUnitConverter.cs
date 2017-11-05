@@ -37,9 +37,7 @@ namespace UnitConversion.Base {
                 }
                 return units;
             }
-            private set {
-                units = value;
-            }
+            private set => units = value;
         }
         private UnitFactors units;
         
@@ -48,7 +46,7 @@ namespace UnitConversion.Base {
         /// </summary>
         public string UnitLeft {
             get {
-                if (unitLeft == string.Empty) {
+                if (string.IsNullOrWhiteSpace(unitLeft)) {
                     throw new InvalidOperationException("UnitLeft has not been set");
                 }
                 return unitLeft;
@@ -65,7 +63,7 @@ namespace UnitConversion.Base {
         /// </summary>
         public string UnitRight {
             get {
-                if (unitRight == string.Empty) {
+                if (string.IsNullOrWhiteSpace(unitRight)) {
                     throw new InvalidOperationException("UnitRight has not been set");
                 }
                 return unitRight;
@@ -132,9 +130,7 @@ namespace UnitConversion.Base {
         /// </summary>
         /// <returns></returns>
         public IEnumerable<UnitFactorSynonyms> SupportedUnits {
-            get {
-                return Units.Keys.AsEnumerable();
-            }
+            get => Units.Keys.AsEnumerable();
         }
 
         /// <summary>
@@ -172,7 +168,7 @@ namespace UnitConversion.Base {
 
         // Throw if a given unit does not exist
         private void ValidateSynonymExists(string synonym) {
-            if (null == Units.FindUnit(synonym)) {
+            if (Units.FindUnit(synonym) == null) {
                 throw new UnitNotSupportedException(synonym);
             }
         }

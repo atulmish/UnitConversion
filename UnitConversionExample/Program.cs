@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 using UnitConversion;
 
@@ -38,7 +35,7 @@ namespace UnitConversionExample {
             kgToLbs.AddUnit("Chuck Norris", 9001);
             kgToLbs.UnitRight = "Chuck Norris";
             kgValue = 7;
-            var chucks = kgToLbs.LeftToRight(kgValue);
+            lbValue = kgToLbs.LeftToRight(kgValue);
             Console.WriteLine("7kg is equal to " + lbValue + " chucks");
 
             Console.Read();

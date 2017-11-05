@@ -2,8 +2,7 @@
 
 namespace UnitConversion {
     public class TimeConverter : BaseUnitConverter {
-
-        UnitFactors units = new UnitFactors("s") {
+        private readonly UnitFactors units = new UnitFactors("s") {
             { new UnitFactorSynonyms("s", "sec", "second"), 1 },
 
             { new UnitFactorSynonyms("ds", "decisecond", "deci-second"), 10 },

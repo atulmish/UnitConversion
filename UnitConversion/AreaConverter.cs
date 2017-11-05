@@ -3,7 +3,7 @@
 namespace UnitConversion
 {
     public class AreaConverter : BaseUnitConverter {
-        UnitFactors units = new UnitFactors("m²") {
+        private readonly UnitFactors units = new UnitFactors("m²") {
             { new UnitFactorSynonyms("m²", "m2", "square metre", "centiare"), 1 },
             { new UnitFactorSynonyms("km²", "km2", "kilometre"), 0.000001 },
             { new UnitFactorSynonyms("cm²", "cm2", "centimetre"), 10000 },

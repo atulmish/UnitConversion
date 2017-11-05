@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace UnitConversion.Base {
@@ -8,19 +7,11 @@ namespace UnitConversion.Base {
             BaseUnit = baseUnit;
         }
 
-        private string _baseUnit;
-        public string BaseUnit {
-            get {
-                return _baseUnit;
-            }
-            private set {
-                _baseUnit = value;
-            }
-        }
+        public string BaseUnit { get; private set; }
 
         // Find the key or null for a given unit
         internal UnitFactorSynonyms FindUnit(UnitFactorSynonyms synonyms) {
-            return this.Keys.FirstOrDefault(factor => factor.Contains(synonyms));
+            return Keys.FirstOrDefault(factor => factor.Contains(synonyms));
         }
 
         // Get the factor for a given unit
