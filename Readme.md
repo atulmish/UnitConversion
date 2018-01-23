@@ -2,6 +2,12 @@
 [![NuGet](https://img.shields.io/nuget/v/UnitConversion.svg)](https://www.nuget.org/packages/UnitConversion)
 [![MIT License](https://img.shields.io/github/license/Stratajet/UnitConversion.svg)](https://raw.githubusercontent.com/Stratajet/UnitConversion/master/LICENSE)
 
+### Important Note
+Following January 2018, the project is maintained by [@gkampolis](https://github.com/gkampolis).
+The project's new "home" can be found [here](https://github.com/gkampolis/UnitConversion).
+
+At the moment, the transfer of maintenance is underway.
+
 ### Unit Conversion
 
 An expansible .Net class library with support for all modern platforms
