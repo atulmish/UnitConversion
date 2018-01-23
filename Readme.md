@@ -1,6 +1,6 @@
-﻿[![Build status](https://ci.appveyor.com/api/projects/status/9oix5m8lgqybda72?svg=true)](https://ci.appveyor.com/project/Stratajet/unit-conversion)
+﻿[![Build status](https://ci.appveyor.com/api/projects/status/wpwan2vbma0i6ohr?svg=true)](https://ci.appveyor.com/project/gkampolis/unitconversion)
 [![NuGet](https://img.shields.io/nuget/v/UnitConversion.svg)](https://www.nuget.org/packages/UnitConversion)
-[![MIT License](https://img.shields.io/github/license/Stratajet/UnitConversion.svg)](https://raw.githubusercontent.com/Stratajet/UnitConversion/master/LICENSE)
+[![MIT License](https://img.shields.io/github/license/gkampolis/UnitConversion.svg)](https://raw.githubusercontent.com/gkampolis/UnitConversion/master/LICENSE)
 
 ### Important Note
 Following January 2018, the project is maintained by [@gkampolis](https://github.com/gkampolis).
@@ -85,3 +85,5 @@ public class DistanceConverter : BaseUnitConverter {
     }
 }
 ```
+
+Many thanks to the original maintener [@Nick-Lucas](https://github.com/Nick-Lucas) for all his hard work.

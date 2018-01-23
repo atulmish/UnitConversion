@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Copyright>Stratajet 2016</Copyright>
+    <Copyright>George Kampolis 2018</Copyright>
     <AssemblyTitle>UnitConversion</AssemblyTitle>
-    <VersionPrefix>0.3.0</VersionPrefix>
-    <Authors>Nick Lucas</Authors>
+    <VersionPrefix>0.3.1</VersionPrefix>
+    <Authors>George Kampolis, Previously Nick Lucas</Authors>
     <TargetFrameworks>netstandard1.3;net40</TargetFrameworks>
     <AssemblyName>UnitConversion</AssemblyName>
     <PackageId>UnitConversion</PackageId>
     <PackageTags>unit;converter;conversion</PackageTags>
-    <PackageProjectUrl>https://github.com/Stratajet/UnitConversion</PackageProjectUrl>
+    <PackageProjectUrl>http://www.gkampolis.com/UnitConversion/</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/Stratajet/UnitConversion</RepositoryUrl>
+    <RepositoryUrl>https://github.com/gkampolis/UnitConversion</RepositoryUrl>
     <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.3' ">$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
