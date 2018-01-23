@@ -35,4 +35,4 @@ deploy:
   api_key:
     secure: g6tSA1hF38SaaKF5I0bFxHS1hK4dBmXq7U33uICetiYerNLs5fpgzxJhZkPFoauB
   skip_symbols: false
-  artifact: .\UnitConversion\Nuget\*.nupkg
+  artifact: /.*\.nupkg/
