@@ -1,6 +1,7 @@
 ﻿[![Build status](https://ci.appveyor.com/api/projects/status/wpwan2vbma0i6ohr?svg=true)](https://ci.appveyor.com/project/gkampolis/unitconversion)
 [![NuGet](https://img.shields.io/nuget/v/UnitConversion.svg)](https://www.nuget.org/packages/UnitConversion)
 [![MIT License](https://img.shields.io/github/license/gkampolis/UnitConversion.svg)](https://raw.githubusercontent.com/gkampolis/UnitConversion/master/LICENSE)
+[![Gitter chat](https://img.shields.io/badge/gitter-join%20chat%20%E2%86%92-brightgreen.svg)](https://gitter.im/UnitConversionCSharp)
 
 ### Important Note
 Following January 2018, the project is maintained by [@gkampolis](https://github.com/gkampolis).
