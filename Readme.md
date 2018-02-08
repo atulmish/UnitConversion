@@ -22,8 +22,6 @@ Implementations are currently limited, but include:
 
 Pull requests with custom implementations are welcome!
 
-***
-
 ## Example
 
 ```C#
@@ -61,8 +59,6 @@ var chucks = kgToLbs.LeftToRight(kgValue);
 Console.WriteLine("7kg is equal to " + lbValue + " chucks");
 ```
 
-***
-
 ## Converters are easy to define and contribute to:
 
 ```C#
@@ -86,8 +82,6 @@ public class DistanceConverter : BaseUnitConverter {
     }
 }
 ```
-
-***
 
 ## Current Maintainers
 
