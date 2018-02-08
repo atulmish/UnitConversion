@@ -1,15 +1,9 @@
-﻿[![Build status](https://ci.appveyor.com/api/projects/status/wpwan2vbma0i6ohr?svg=true)](https://ci.appveyor.com/project/gkampolis/unitconversion)
+﻿# Unit Conversion
+
+[![Build status](https://ci.appveyor.com/api/projects/status/wpwan2vbma0i6ohr?svg=true)](https://ci.appveyor.com/project/gkampolis/unitconversion)
 [![NuGet](https://img.shields.io/nuget/v/UnitConversion.svg)](https://www.nuget.org/packages/UnitConversion)
 [![MIT License](https://img.shields.io/github/license/gkampolis/UnitConversion.svg)](https://raw.githubusercontent.com/gkampolis/UnitConversion/master/LICENSE.md)
 [![Gitter chat](https://img.shields.io/badge/gitter-join%20chat%20%E2%86%92-brightgreen.svg)](https://gitter.im/UnitConversionCSharp)
-
-### Important Note
-Following January 2018, the project is maintained by [@gkampolis](https://github.com/gkampolis).
-The project's new "home" can be found [here](https://github.com/gkampolis/UnitConversion).
-
-At the moment, the transfer of maintenance is underway.
-
-### Unit Conversion
 
 An expansible .Net class library with support for all modern platforms
 
@@ -30,7 +24,7 @@ Pull requests with custom implementations are welcome!
 
 ***
 
-##### Example
+## Example
 
 ```C#
 double kgValue;
@@ -69,7 +63,8 @@ Console.WriteLine("7kg is equal to " + lbValue + " chucks");
 
 ***
 
-##### Converters are easy to define and contribute to
+## Converters are easy to define and contribute to:
+
 ```C#
 public class DistanceConverter : BaseUnitConverter {
     UnitFactors units = new UnitFactors("m") {
@@ -91,5 +86,13 @@ public class DistanceConverter : BaseUnitConverter {
     }
 }
 ```
+
+***
+
+## Current Maintainers
+
+* [@gkampolis](https://github.com/gkampolis)
+
+### Previous maintainers
 
 Many thanks to the original maintainer [@Nick-Lucas](https://github.com/Nick-Lucas) for all his hard work.
