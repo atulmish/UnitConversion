@@ -1,11 +1,22 @@
-﻿using UnitConversion.Base;
+﻿//-----------------------------------------------------------------------
+// <copyright file="TimeConverter.cs" company="George Kampolis">
+//     Copyright (c) George Kampolis. All rights reserved.
+//     Licensed under the MIT License, Version 2.0. See LICENSE.md in the project root for license information.
+// </copyright>
+//-----------------------------------------------------------------------
 
-namespace UnitConversion {
-    public class TimeConverter : BaseUnitConverter {
+namespace UnitConversion
+{
+    using UnitConversion.Base;
 
-        UnitFactors units = new UnitFactors("s") {
+    /// <summary>
+    /// Converts between time units.
+    /// </summary>
+    public class TimeConverter : BaseUnitConverter
+    {
+        UnitFactors units = new UnitFactors("s")
+        {
             { new UnitFactorSynonyms("s", "sec", "second"), 1 },
-
             { new UnitFactorSynonyms("ds", "decisecond", "deci-second"), 10 },
             { new UnitFactorSynonyms("cs", "centisecond", "centi-second"), 100 },
             { new UnitFactorSynonyms("ms", "millisecond", "milli-second"), 1_000 },
@@ -19,10 +30,12 @@ namespace UnitConversion {
             { new UnitFactorSynonyms("leap year", "leap-year"), 1d / 31622400 },
         };
 
-        public TimeConverter(string leftUnit, string rightUnit) {
+        public TimeConverter(string leftUnit, string rightUnit)
+        {
             Instantiate(units, leftUnit, rightUnit);
         }
-        public TimeConverter() {
+        public TimeConverter()
+        {
             Instantiate(units);
         }
     }

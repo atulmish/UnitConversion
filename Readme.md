@@ -64,8 +64,10 @@ Console.WriteLine("7kg is equal to " + lbValue + " chucks");
 ## Converters are easy to define and contribute to:
 
 ```C#
-public class DistanceConverter : BaseUnitConverter {
-    UnitFactors units = new UnitFactors("m") {
+public class DistanceConverter : BaseUnitConverter 
+{
+    UnitFactors units = new UnitFactors("m") 
+    {
         { new UnitFactorSynonyms("m", "metre"), 1 },
         { new UnitFactorSynonyms("km", "kilometre"), 0.001 },
         { new UnitFactorSynonyms("cm", "centimetre"), 100 },
@@ -76,10 +78,12 @@ public class DistanceConverter : BaseUnitConverter {
         { new UnitFactorSynonyms("in", "inch"), 5000d / 127 },
     };
 
-    public DistanceConverter(string leftUnit, string rightUnit) {
+    public DistanceConverter(string leftUnit, string rightUnit) 
+    {
         Instantiate(units, leftUnit, rightUnit);
     }
-    public DistanceConverter() {
+    public DistanceConverter() 
+    {
         Instantiate(units);
     }
 }

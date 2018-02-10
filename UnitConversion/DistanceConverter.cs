@@ -1,10 +1,23 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright file="DistanceConverter.cs" company="George Kampolis">
+//     Copyright (c) George Kampolis. All rights reserved.
+//     Licensed under the MIT License, Version 2.0. See LICENSE.md in the project root for license information.
+// </copyright>
+//-----------------------------------------------------------------------
 
-using UnitConversion.Base;
 
-namespace UnitConversion {
-    public class DistanceConverter : BaseUnitConverter {
-        UnitFactors units = new UnitFactors("m") {
+namespace UnitConversion
+{
+    using System;
+    using UnitConversion.Base;
+
+    /// <summary>
+    /// Converts between distance units.
+    /// </summary>
+    public class DistanceConverter : BaseUnitConverter
+    {
+        UnitFactors units = new UnitFactors("m")
+        {
             { new UnitFactorSynonyms("m", "metre"), 1 },
             { new UnitFactorSynonyms("km", "kilometre"), 0.001 },
             { new UnitFactorSynonyms("cm", "centimetre"), 100 },
@@ -15,10 +28,12 @@ namespace UnitConversion {
             { new UnitFactorSynonyms("in", "inch"), 5000d / 127 },
         };
 
-        public DistanceConverter(string leftUnit, string rightUnit) {
+        public DistanceConverter(string leftUnit, string rightUnit)
+        {
             Instantiate(units, leftUnit, rightUnit);
         }
-        public DistanceConverter() {
+        public DistanceConverter()
+        {
             Instantiate(units);
         }
     }

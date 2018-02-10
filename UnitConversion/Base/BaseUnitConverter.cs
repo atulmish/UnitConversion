@@ -1,13 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿//-----------------------------------------------------------------------
+// <copyright file="BaseUnitConverter.cs" company="George Kampolis">
+//     Copyright (c) George Kampolis. All rights reserved.
+//     Licensed under the MIT License, Version 2.0. See LICENSE.md in the project root for license information.
+// </copyright>
+//-----------------------------------------------------------------------
 
-namespace UnitConversion.Base {
-    public abstract class BaseUnitConverter : IUnitConverter {
+namespace UnitConversion.Base
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    /// <summary>
+    /// Base functionality for the rest of the project.
+    /// </summary>
+    public abstract class BaseUnitConverter : IUnitConverter
+    {
         /// <summary>
         /// Set Unit conversions. Left/Right conversion will default to UnitFactors.BaseUnit
         /// </summary>
-        protected void Instantiate(UnitFactors conversionFactors) {
+        protected void Instantiate(UnitFactors conversionFactors)
+        {
             Units = conversionFactors;
 
             UnitLeft = Units.BaseUnit;
@@ -17,7 +30,8 @@ namespace UnitConversion.Base {
         /// <summary>
         /// Set Unit conversions and initial Left/Right conversion
         /// </summary>
-        protected void Instantiate(UnitFactors conversionFactors, string leftUnit, string rightUnit) {
+        protected void Instantiate(UnitFactors conversionFactors, string leftUnit, string rightUnit)
+        {
             Units = conversionFactors;
 
             UnitLeft = leftUnit;
@@ -30,14 +44,18 @@ namespace UnitConversion.Base {
         /// <summary>
         /// Internal Dictionary of Unit Factors
         /// </summary>
-        protected UnitFactors Units {
-            get {
-                if (units == null) {
+        protected UnitFactors Units
+        {
+            get
+            {
+                if (units == null)
+                {
                     throw new NullReferenceException("UnitDictionary is not created");
                 }
                 return units;
             }
-            private set {
+            private set
+            {
                 units = value;
             }
         }
@@ -48,12 +66,14 @@ namespace UnitConversion.Base {
         /// </summary>
         public string UnitLeft {
             get {
-                if (unitLeft == string.Empty) {
+                if (unitLeft == string.Empty)
+                {
                     throw new InvalidOperationException("UnitLeft has not been set");
                 }
                 return unitLeft;
             }
-            set {
+            set
+            {
                 ValidateSynonymExists(value);
                 unitLeft = value;
             }
@@ -63,14 +83,18 @@ namespace UnitConversion.Base {
         /// <summary>
         /// The Unit to convert on the right
         /// </summary>
-        public string UnitRight {
-            get {
-                if (unitRight == string.Empty) {
+        public string UnitRight
+        {
+            get
+            {
+                if (unitRight == string.Empty)
+                {
                     throw new InvalidOperationException("UnitRight has not been set");
                 }
                 return unitRight;
             }
-            set {
+            set
+            {
                 ValidateSynonymExists(value);
                 unitRight = value;
             }
@@ -85,7 +109,8 @@ namespace UnitConversion.Base {
         /// </summary>
         /// <param name="value">the Unit's value</param>
         /// <returns>The converted value</returns>
-        public double LeftToRight(double value) {
+        public double LeftToRight(double value)
+        {
             return AToB(value, UnitLeft, UnitRight);
         }
 
@@ -95,7 +120,8 @@ namespace UnitConversion.Base {
         /// <param name="value">the Unit's value</param>
         /// <param name="decimals">how many decimal places to round to</param>
         /// <returns>The converted value</returns>
-        public double LeftToRight(double value, int decimals) {
+        public double LeftToRight(double value, int decimals)
+        {
             return Math.Round(LeftToRight(value), decimals);
         }
 
@@ -104,7 +130,8 @@ namespace UnitConversion.Base {
         /// </summary>
         /// <param name="value">the Unit's value</param>
         /// <returns>The converted value</returns>
-        public double RightToLeft(double value) {
+        public double RightToLeft(double value)
+        {
             return AToB(value, UnitRight, UnitLeft);
         }
 
@@ -114,11 +141,13 @@ namespace UnitConversion.Base {
         /// <param name="value">the Unit's value</param>
         /// <param name="decimals">how many decimal places to round to</param>
         /// <returns>The converted value</returns>
-        public double RightToLeft(double value, int decimals) {
+        public double RightToLeft(double value, int decimals)
+        {
             return Math.Round(RightToLeft(value), decimals);
         }
 
-        private double AToB(double value, string startUnit, string endUnit) {
+        private double AToB(double value, string startUnit, string endUnit)
+        {
             var startFactor = Units.FindFactor(startUnit);
             var endFactor = Units.FindFactor(endUnit);
             return (value / startFactor) * endFactor;
@@ -131,8 +160,10 @@ namespace UnitConversion.Base {
         /// Get an enumerable of all the UnitFactorKeys, which contain synonyms for each unit
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<UnitFactorSynonyms> SupportedUnits {
-            get {
+        public IEnumerable<UnitFactorSynonyms> SupportedUnits
+        {
+            get
+            {
                 return Units.Keys.AsEnumerable();
             }
         }
@@ -142,7 +173,8 @@ namespace UnitConversion.Base {
         /// </summary>
         /// <param name="existingSynonym">Some synonym from an existing unit</param>
         /// <param name="newSynonym">New synonym to append to the unit</param>
-        public void AddSynonym(string existingSynonym, string newSynonym) {
+        public void AddSynonym(string existingSynonym, string newSynonym)
+        {
             ValidateNewSynonym(newSynonym);
             var factor = Units.FindUnit(existingSynonym);
             factor.AddSynonym(newSynonym);
@@ -153,7 +185,8 @@ namespace UnitConversion.Base {
         /// </summary>
         /// <param name="synonyms">Object of synonyms</param>
         /// <param name="factor"></param>
-        public void AddUnit(UnitFactorSynonyms synonyms, double factor) {
+        public void AddUnit(UnitFactorSynonyms synonyms, double factor)
+        {
             ValidateNewSynonym(synonyms);
             Units.Add(synonyms, factor);
         }
@@ -163,7 +196,8 @@ namespace UnitConversion.Base {
         /// </summary>
         /// <param name="name"></param>
         /// <param name="factor"></param>
-        public void AddUnit(string name, double factor) {
+        public void AddUnit(string name, double factor)
+        {
             AddUnit((UnitFactorSynonyms)name, factor);
         }
 
@@ -171,16 +205,20 @@ namespace UnitConversion.Base {
         // ** VALIDATION **
 
         // Throw if a given unit does not exist
-        private void ValidateSynonymExists(string synonym) {
-            if (null == Units.FindUnit(synonym)) {
+        private void ValidateSynonymExists(string synonym)
+        {
+            if (null == Units.FindUnit(synonym))
+            {
                 throw new UnitNotSupportedException(synonym);
             }
         }
 
         // Throw if a given unit does exist
-        private void ValidateNewSynonym(UnitFactorSynonyms synonyms) {
+        private void ValidateNewSynonym(UnitFactorSynonyms synonyms)
+        {
             var preExistingUnit = Units.FindUnit(synonyms);
-            if (preExistingUnit != null) {
+            if (preExistingUnit != null)
+            {
                 throw new UnitAlreadyExistsException(preExistingUnit.ToString());
             }
         }

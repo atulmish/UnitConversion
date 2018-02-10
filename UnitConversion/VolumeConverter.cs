@@ -1,9 +1,20 @@
-﻿using UnitConversion.Base;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="VolumeConverter.cs" company="George Kampolis">
+//     Copyright (c) George Kampolis. All rights reserved.
+//     Licensed under the MIT License, Version 2.0. See LICENSE.md in the project root for license information.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace UnitConversion
 {
-    public class VolumeConverter : BaseUnitConverter {
-        UnitFactors units = new UnitFactors("l") {
+    using UnitConversion.Base;
+
+    /// <summary>
+    /// Converts between volume units.
+    /// </summary>
+    public class VolumeConverter : BaseUnitConverter
+    {
+        UnitFactors units = new UnitFactors("l")
+        {
             { new UnitFactorSynonyms("l", "L", "lt", "ltr", "liter", "litre", "dm³", "dm3", "cubic decimetre"), 1 },
             { new UnitFactorSynonyms("m³", "m3", "cubic metre"), 0.001 },
             { new UnitFactorSynonyms("cm³", "cm3", "cubic centimetre"), 1000 },
@@ -28,6 +39,4 @@ namespace UnitConversion
             Instantiate(units);
         }
     }
-   
-
 }
