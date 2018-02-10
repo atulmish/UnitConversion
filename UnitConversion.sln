@@ -1,13 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E40C0E9D-FB41-491E-A2AB-E143EB8A47E8}"
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
 		..\global.json = ..\global.json
 		Readme.md = Readme.md
+		UnitConversion.sln.DotSettings = UnitConversion.sln.DotSettings
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7C65C273-1904-4EE3-A87D-7BBBF79C8651}"
@@ -46,5 +47,8 @@ Global
 		{18F769BB-6FB7-4FE1-ABA9-EAE6F5FCC21E} = {7C65C273-1904-4EE3-A87D-7BBBF79C8651}
 		{B446C2D9-30A9-424D-B4CD-0A8AC95D54AD} = {B6AEE757-AE69-48C1-B9C5-9C6214CE99DB}
 		{AE87678B-87B7-4C4C-B677-1E12B2273A3C} = {B6AEE757-AE69-48C1-B9C5-9C6214CE99DB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4584A06-491C-469B-83CF-11BE6C1EA521}
 	EndGlobalSection
 EndGlobal
