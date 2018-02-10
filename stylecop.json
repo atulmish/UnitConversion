@@ -1,0 +1,49 @@
+{	
+	"$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+	"settings": {
+		"indentation": {
+			"indentationSize": 4,
+			"tabSize": 4,
+			"useTabs": true
+		},
+		"orderingRules": {
+			"blankLinesBetweenUsingGroups": "allow",
+			"systemUsingDirectivesFirst": true,
+			"usingDirectivesPlacement": "insideNamespace",
+			"elementOrder": [
+				"kind",
+				"accessibility",
+				"constant",
+				"static",
+				"readonly"
+			]
+		},
+		"maintainabilityRules": {
+			"topLevelTypes": [
+				"class",
+				"interface",
+				"enum"
+			]
+		},
+		"layoutRules": {
+			"newlineAtEndOfFile": "require",
+			"allowConsecutiveUsings": true
+		},
+		"documentationRules": {
+			"companyName": "George Kampolis",
+			"copyrightText": "Copyright (c) {companyName}. All rights reserved.\nLicensed under the {licenseName} license. See {licenseFile} file in the project root for full license information.",
+			"variables": {
+				"licenseName": "MIT",
+				"licenseFile": "LICENSE"
+			},
+			"xmlHeader": false,
+			"documentInterfaces": false,
+			"documentExposedElements": true,
+			"documentInternalElements": true,
+			"documentPrivateElements": false,
+			"documentPrivateFields": false,
+			"documentationCulture": "en-US",
+			"fileNamingConvention": "stylecop"
+		}
+	}
+}
