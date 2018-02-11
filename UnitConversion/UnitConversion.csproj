@@ -16,7 +16,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <iconUrl>https://github.com/gkampolis/UnitConversion/blob/master/Logo/UnitConversion.jpg</iconUrl>
+    <iconUrl>https://github.com/gkampolis/UnitConversion/blob/master/Logo/UnitConversion.jpg?raw=true</iconUrl>
   </PropertyGroup>
 
   <ItemGroup>
