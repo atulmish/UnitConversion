@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Copyright>George Kampolis 2018</Copyright>
     <AssemblyTitle>UnitConversion</AssemblyTitle>
-    <VersionPrefix>0.3.1</VersionPrefix>
+    <VersionPrefix>0.3.2</VersionPrefix>
     <Authors>George Kampolis, Previously Nick Lucas</Authors>
     <TargetFrameworks>netstandard1.3;net40</TargetFrameworks>
     <AssemblyName>UnitConversion</AssemblyName>
@@ -16,6 +16,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <iconUrl>https://github.com/gkampolis/UnitConversion/blob/master/Logo/UnitConversion.jpg</iconUrl>
   </PropertyGroup>
 
   <ItemGroup>
