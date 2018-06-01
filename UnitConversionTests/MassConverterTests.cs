@@ -66,5 +66,38 @@ namespace UnitConversionTests {
             Assert.AreEqual(valR, converter.LeftToRight(valL, 3));
             Assert.AreEqual(valL, converter.RightToLeft(valR, 3));
         }
+
+        [TestMethod()]
+        public void kg_quintal()
+        {
+            converter = new MassConverter("quintal", "kg");
+            double valL = 1;
+            double valR = 100;
+
+            Assert.AreEqual(valR, converter.LeftToRight(valL));
+            Assert.AreEqual(valL, converter.RightToLeft(valR));
+        }
+
+        [TestMethod()]
+        public void kg_uston()
+        {
+            converter = new MassConverter("us ton", "kg");
+            double valL = 1;
+            double valR = 907.18582;
+
+            Assert.AreEqual(valR, converter.LeftToRight(valL, 5));
+            Assert.AreEqual(valL, converter.RightToLeft(valR, 5));
+        }
+
+        [TestMethod()]
+        public void kg_imperialton()
+        {
+            converter = new MassConverter("imperial ton", "kg");
+            double valL = 1;
+            double valR = 1016.04642;
+
+            Assert.AreEqual(valR, converter.LeftToRight(valL, 5));
+            Assert.AreEqual(valL, converter.RightToLeft(valR, 5));
+        }
     }
 }

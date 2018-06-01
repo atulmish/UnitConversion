@@ -22,6 +22,9 @@ namespace UnitConversion
             { new UnitFactorSynonyms("lb", "lbs", "pound", "pounds"), 100000000d / 45359237 },
             { new UnitFactorSynonyms("st", "stone"), 50000000d / 317514659 },
             { new UnitFactorSynonyms("oz", "ounce"), 1600000000d / 45359237 },
+            { new UnitFactorSynonyms("quintal"), 0.01 },
+            { new UnitFactorSynonyms("short ton", "net ton", "us ton"), 0.00110231 },
+            { new UnitFactorSynonyms("long ton", "weight ton", "gross ton", "imperial ton"), 0.000984207 },
         };
 
         public MassConverter(string leftUnit, string rightUnit)
