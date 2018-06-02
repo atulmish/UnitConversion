@@ -111,6 +111,9 @@ namespace UnitConversion.Base
         /// <returns>The converted value</returns>
         public double LeftToRight(double value)
         {
+            if (units.BaseUnit == "celsius")
+                return TemperatureHelper.AToB(value, UnitLeft, UnitRight);
+
             return AToB(value, UnitLeft, UnitRight);
         }
 
@@ -132,6 +135,9 @@ namespace UnitConversion.Base
         /// <returns>The converted value</returns>
         public double RightToLeft(double value)
         {
+            if (units.BaseUnit == "celsius")
+                return TemperatureHelper.AToB(value, UnitRight, UnitLeft);
+
             return AToB(value, UnitRight, UnitLeft);
         }
 
