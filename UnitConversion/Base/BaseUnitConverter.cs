@@ -156,7 +156,8 @@ namespace UnitConversion.Base
         {
             var startFactor = Units.FindFactor(startUnit);
             var endFactor = Units.FindFactor(endUnit);
-            return (value / startFactor) * endFactor;
+            var result = (value / startFactor) * endFactor;
+            return result.CheckCloseEnoughValue();
         }
 
 
