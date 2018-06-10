@@ -6,8 +6,8 @@ namespace UnitConversion.Base
 {
     public static class ExtensionMethods
     {
-        public static double lowerBoundEpsilon = 0.99999;
-        public static double upperBoundEpsilon = 0.999999999;
+        public const double lowerBoundEpsilon = 0.99999;
+        public const double upperBoundEpsilon = 0.999999999;
 
         /// <summary>
         /// Return close enough value
