@@ -119,9 +119,8 @@ namespace UnitConversionTests {
             double valL = 3600 * 24 * 366;
             double valR = 1;
             
-            // TODO: ran into a float error here. result is out by a tiny amount, unsure of best approach to correct the error
-            Assert.AreEqual(valR, Math.Round(converter.LeftToRight(valL), 8));
-            Assert.AreEqual(valL, Math.Round(converter.RightToLeft(valR), 8));
+            Assert.AreEqual(valR, converter.LeftToRight(valL));
+            Assert.AreEqual(valL, converter.RightToLeft(valR));
         }
     }
 }
