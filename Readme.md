@@ -5,6 +5,11 @@
 [![MIT License](https://img.shields.io/github/license/gkampolis/UnitConversion.svg)](https://raw.githubusercontent.com/gkampolis/UnitConversion/master/LICENSE.md)
 [![Gitter chat](https://img.shields.io/badge/gitter-join%20chat%20%E2%86%92-brightgreen.svg)](https://gitter.im/UnitConversionCSharp)
 
+## Note
+
+UnitConversion is actively looking for maintainers! See [here](https://github.com/gkampolis/UnitConversion/issues/22) if you're interested.
+
+## What is it?
 An expansible .Net class library with support for all modern platforms
 
 * .Net Framework 4.0+
