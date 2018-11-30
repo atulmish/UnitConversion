@@ -5,10 +5,6 @@
 [![MIT License](https://img.shields.io/github/license/gkampolis/UnitConversion.svg)](https://raw.githubusercontent.com/gkampolis/UnitConversion/master/LICENSE.md)
 [![Gitter chat](https://img.shields.io/badge/gitter-join%20chat%20%E2%86%92-brightgreen.svg)](https://gitter.im/UnitConversionCSharp)
 
-## Note
-
-UnitConversion is actively looking for maintainers! See [here](https://github.com/gkampolis/UnitConversion/issues/22) if you're interested.
-
 ## What is it?
 An expansible .Net class library with support for all modern platforms
 
@@ -93,11 +89,10 @@ public class DistanceConverter : BaseUnitConverter
     }
 }
 ```
+## Current Maintainer
 
-## Current Maintainers
-
-* [@gkampolis](https://github.com/gkampolis)
+* [@atulmish](https://github.com/atulmish)
 
 ### Previous maintainers
 
-Many thanks to the original maintainer [@Nick-Lucas](https://github.com/Nick-Lucas) for all his hard work.
+Many thanks to the original maintainers [@Nick-Lucas](https://github.com/Nick-Lucas) and [@gkampolis](https://github.com/gkampolis) for all his hard work.
