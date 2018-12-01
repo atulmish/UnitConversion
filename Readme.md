@@ -95,4 +95,4 @@ public class DistanceConverter : BaseUnitConverter
 
 ### Previous maintainers
 
-Many thanks to the original maintainers [@Nick-Lucas](https://github.com/Nick-Lucas) and [@gkampolis](https://github.com/gkampolis) for all his hard work.
+Many thanks to the original maintainers [@Nick-Lucas](https://github.com/Nick-Lucas) and [@gkampolis](https://github.com/gkampolis) for all their hard work.
