@@ -18,8 +18,8 @@ namespace UnitConversion.Base
             }
             else if (Kelvin.Contains(startUnit) && Fahrenheit.Contains(endUnit))
             {
-                //Kelvin to Fahrenheit: °F = 9 / 5(K - 273) + 32
-                return ((9d / 5) * (value - 273) + 32);
+                //Kelvin to Fahrenheit: °F = 9 / 5(K - 273.15) + 32
+                return ((9d / 5) * (value - 273.15) + 32);
             }
             else if (Fahrenheit.Contains(startUnit) && Celsius.Contains(endUnit))
             {
@@ -28,18 +28,18 @@ namespace UnitConversion.Base
             }
             else if (Celsius.Contains(startUnit) && Kelvin.Contains(endUnit))
             {
-                //Celsius to Kelvin: K = °C + 273
-                return value + 273;
+                //Celsius to Kelvin: K = °C + 273.15
+                return value + 273.15;
             }
             else if (Kelvin.Contains(startUnit) && Celsius.Contains(endUnit))
             {
-                //Kelvin to Celsius: °C = K - 273
-                return value - 273;
+                //Kelvin to Celsius: °C = K - 273.15
+                return value - 273.15;
             }
             else if (Fahrenheit.Contains(startUnit) && Kelvin.Contains(endUnit))
             {
-                //Fahrenheit to Kelvin: K = 5 / 9(°F - 32) + 273
-                return ((5d / 9) * (value - 32) + 273);
+                //Fahrenheit to Kelvin: K = 5 / 9(°F - 32) + 273.15
+                return ((5d / 9) * (value - 32) + 273.15);
             }
             //Used "else" for corner case "both units are same"
             else

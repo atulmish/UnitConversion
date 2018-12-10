@@ -28,7 +28,7 @@ namespace UnitConversionTests
         {
             converter = new TemperatureConverter("kelvin", "fahrenheit");
             double valL = 1;
-            double valR = -457.6;
+            double valR = -457.87;
 
             Assert.AreEqual(valR, converter.LeftToRight(valL, 3));
             Assert.AreEqual(valL, converter.RightToLeft(valR, 3));
@@ -48,7 +48,7 @@ namespace UnitConversionTests
         {
             converter = new TemperatureConverter("celsius", "kelvin");
             double valL = 1;
-            double valR = 274.000;
+            double valR = 274.150;
 
             Assert.AreEqual(valR, converter.LeftToRight(valL, 3));
             Assert.AreEqual(valL, converter.RightToLeft(valR, 3));
@@ -58,7 +58,7 @@ namespace UnitConversionTests
         {
             converter = new TemperatureConverter("kelvin", "celsius");
             double valL = 1;
-            double valR = -272.000;
+            double valR = -272.150;
 
             Assert.AreEqual(valR, converter.LeftToRight(valL, 3));
             Assert.AreEqual(valL, converter.RightToLeft(valR, 3));
@@ -68,7 +68,7 @@ namespace UnitConversionTests
         {
             converter = new TemperatureConverter("fahrenheit", "kelvin");
             double valL = 1;
-            double valR = 255.778;
+            double valR = 255.928;
 
             Assert.AreEqual(valR, converter.LeftToRight(valL, 3));
             Assert.AreEqual(valL, converter.RightToLeft(valR, 3));
