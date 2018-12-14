@@ -4,7 +4,7 @@ clone_depth: 50
 
 cache:
   - '%LOCALAPPDATA%\Microsoft\dotnet -> appveyor.yml'
-  - '%USERPROFILE%\.nuget\packages -> appveyor.yml, **\project.json, Nuget.Config'
+  #- '%USERPROFILE%\.nuget\packages -> appveyor.yml, **\project.json, Nuget.Config'
 
 before_build:
   # Install dotnet cli
@@ -25,7 +25,7 @@ test_script:
   - dotnet test .\UnitConversionTests\UnitConversionTests.csproj
 
 after_test:
-  - dotnet pack .\UnitConversion\UnitConversion.csproj --configuration=Release --output=".\Nuget"
+  - dotnet pack .\UnitConversion\UnitConversion.csproj --configuration=Release --output=".\Nuget" -Version %appveyor_build_version%
 
 artifacts:
   - path: .\UnitConversion\Nuget\*.nupkg
