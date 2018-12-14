@@ -23,8 +23,6 @@ Implementations are currently limited, but include:
 
 Pull requests with custom implementations are welcome! Please have a look through the [contributing guidelines](https://github.com/gkampolis/UnitConversion/blob/master/.github/CONTRIBUTING.md) and our [code of conduct](https://github.com/gkampolis/UnitConversion/blob/master/.github/CODE_OF_CONDUCT.md).
 
-Note however that at the moment the maintainers are re-organizing a significant portion of the codebase, with the aim of propagating the same coding conventions throughout the entirety of the project. It is estimated that this should be complete by the end of February 2018.
-
 ## Example
 
 ```C#
