@@ -86,5 +86,15 @@ namespace UnitConversionTests {
             Assert.AreEqual(valR, converter.LeftToRight(valL, 4));
             Assert.AreEqual(valL, converter.RightToLeft(valR, 4));
         }
+        
+        [TestMethod()]
+        public void m_au() {
+            converter = new DistanceConverter("m", "au");
+            double valL = 149600000000;
+            double valR = 1;
+
+            Assert.AreEqual(valR, converter.LeftToRight(valL, 4));
+            Assert.AreEqual(valL, converter.RightToLeft(valR, 4));
+        }
     }
 }
