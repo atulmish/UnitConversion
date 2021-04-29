@@ -1,0 +1,20 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: MSTest.TestFramework
+    versions:
+    - 2.2.1
+    - 2.2.2
+  - dependency-name: MSTest.TestAdapter
+    versions:
+    - 2.2.1
+    - 2.2.2
+  - dependency-name: Microsoft.NET.Test.Sdk
+    versions:
+    - 16.8.3
+    - 16.9.1
