@@ -5,7 +5,7 @@
     <AssemblyTitle>UnitConversion</AssemblyTitle>
     <VersionPrefix>0.3.2.1</VersionPrefix>
     <Authors>George Kampolis, Previously Nick Lucas</Authors>
-    <TargetFrameworks>netstandard1.3;net40</TargetFrameworks>
+    <TargetFrameworks>net40;net461;net6.0;netstandard1.3;netstandard2.1</TargetFrameworks>
     <AssemblyName>UnitConversion</AssemblyName>
     <PackageId>UnitConversion</PackageId>
     <PackageTags>unit;converter;conversion</PackageTags>

@@ -22,9 +22,8 @@ namespace UnitConversion.Base
         protected void Instantiate(UnitFactors conversionFactors)
         {
             Units = conversionFactors;
-
-            UnitLeft = Units.BaseUnit;
-            unitRight = units.BaseUnit;
+            
+            Instantiate(conversionFactors, Units.BaseUnit, Units.BaseUnit);
         }
 
         /// <summary>
@@ -33,9 +32,17 @@ namespace UnitConversion.Base
         protected void Instantiate(UnitFactors conversionFactors, string leftUnit, string rightUnit)
         {
             Units = conversionFactors;
-
+            
             UnitLeft = leftUnit;
             UnitRight = rightUnit;
+            
+            UpdateConversionFactors();
+        }
+
+        private void UpdateConversionFactors()
+        {
+            leftToRight = Units.FindFactor(unitRight) / Units.FindFactor(unitLeft);
+            rightToLeft = Units.FindFactor(unitLeft) / Units.FindFactor(unitRight);
         }
 
 
@@ -76,6 +83,9 @@ namespace UnitConversion.Base
             {
                 ValidateSynonymExists(value);
                 unitLeft = value;
+                
+                if(unitRight != null)
+                    UpdateConversionFactors();
             }
         }
         private string unitLeft;
@@ -97,10 +107,15 @@ namespace UnitConversion.Base
             {
                 ValidateSynonymExists(value);
                 unitRight = value;
+                
+                if(unitLeft != null)
+                    UpdateConversionFactors();
             }
         }
         private string unitRight;
 
+        private double leftToRight;
+        private double rightToLeft;
 
         // ** CONVERSION **
 
@@ -114,7 +129,8 @@ namespace UnitConversion.Base
             if (units.BaseUnit == "celsius")
                 return TemperatureHelper.AToB(value, UnitLeft, UnitRight);
 
-            return AToB(value, UnitLeft, UnitRight);
+            var result = value * leftToRight;
+            return result.CheckCloseEnoughValue();
         }
 
         /// <summary>
@@ -138,7 +154,8 @@ namespace UnitConversion.Base
             if (units.BaseUnit == "celsius")
                 return TemperatureHelper.AToB(value, UnitRight, UnitLeft);
 
-            return AToB(value, UnitRight, UnitLeft);
+            var result = value * rightToLeft;
+            return result.CheckCloseEnoughValue();
         }
 
         /// <summary>
@@ -151,16 +168,7 @@ namespace UnitConversion.Base
         {
             return Math.Round(RightToLeft(value), decimals);
         }
-
-        private double AToB(double value, string startUnit, string endUnit)
-        {
-            var startFactor = Units.FindFactor(startUnit);
-            var endFactor = Units.FindFactor(endUnit);
-            var result = (value / startFactor) * endFactor;
-            return result.CheckCloseEnoughValue();
-        }
-
-
+        
         // ** UNITS **
 
         /// <summary>
