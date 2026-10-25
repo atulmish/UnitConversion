@@ -77,7 +77,7 @@ public class UnitsDocumentationTests
             text.AppendLine();
         }
 
-        return text.ToString();
+        return text.ToString().TrimEnd() + "\n";
     }
 
     private static string Names(UnitFactorSynonyms unit) => string.Join(", ", unit.Synonyms.Select(n => $"`{n}`"));

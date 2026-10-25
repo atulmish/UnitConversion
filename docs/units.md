@@ -212,4 +212,3 @@ Base unit: `l`. Class: `VolumeConverter`.
 | US pint | 0.473176473 | `US pint`, `US pt`, `US p` |
 | US quart | 0.946352946 | `US quart`, `US qt` |
 | US gallon | 3.785411784 | `US gallon`, `US gal` |
-
