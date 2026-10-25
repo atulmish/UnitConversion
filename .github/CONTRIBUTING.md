@@ -39,7 +39,7 @@ Derive from `BaseUnitConverter`, build a `UnitFactors` table with the base unit,
 - Use an `.editorconfig`-aware editor.
 - Every public type and member needs an XML documentation comment: the build treats a missing one as an error, and warnings are errors.
 - Keep the public API compatible within a major version. Do not rename or remove public members, units or unit names.
-- Add or update tests for every behaviour change. CI enforces at least 95% line coverage.
+- Add or update tests for every behaviour change. `UnitConversionTests/PropertyTests.cs` uses FsCheck to check laws (round trips, monotonicity, linearity) for every converter over random units and values, so a new unit or converter is covered by it automatically. A failing property prints a seed that reproduces it. CI enforces at least 95% line coverage.
 
 ## Pull requests
 
