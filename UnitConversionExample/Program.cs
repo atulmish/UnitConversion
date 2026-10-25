@@ -1,47 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+using System;
 using UnitConversion;
 
-namespace UnitConversionExample {
-    public class Program {
-        public static void Main(string[] args) {
-            double kgValue;
-            double lbValue;
+// A short tour of the library. Run it with: dotnet run --project UnitConversionExample
 
-            // Simple programmatic approach to conversion, using string `Synonyms`
-            var kgToLbs = new MassConverter("kg", "lbs");
-            kgValue = 452;
-            lbValue = kgToLbs.LeftToRight(kgValue);
-            Console.WriteLine("452kg in pounds is " + lbValue);
+// Convert between two units. Unit names are matched ignoring case, and each unit answers to several names.
+var kgToLbs = new MassConverter("kg", "lbs");
+double kilograms = 452;
+double pounds = kgToLbs.LeftToRight(kilograms);
+Console.WriteLine($"{kilograms} kg in pounds is {pounds}");
 
-            // Converting both ways is easy
-            kgValue = kgToLbs.RightToLeft(lbValue);
-            Console.WriteLine("Converted back: " + kgValue);
+// Convert back.
+Console.WriteLine($"Converted back: {kgToLbs.RightToLeft(pounds)} kg");
 
-            // Rounding is part of conversion
-            lbValue = kgToLbs.LeftToRight(kgValue, 2);
-            Console.WriteLine("452kg in pounds (to 2 decimal places) is " + lbValue);
+// Round the result to a number of decimal places.
+Console.WriteLine($"{kilograms} kg in pounds, to 2 decimal places: {kgToLbs.LeftToRight(kilograms, 2)}");
 
-            // You can easily customise converters to support Synonyms used in 
-            // business logic, such as those stored on a database
-            kgToLbs.AddSynonym("kg", "MTOW (KG)");
+// Add a synonym, for example a name that is stored in your own data.
+kgToLbs.AddSynonym("kg", "MTOW (KG)");
+kgToLbs.UnitLeft = "MTOW (KG)";
+Console.WriteLine($"3000 MTOW (KG) in pounds is {kgToLbs.LeftToRight(3000)}");
 
-            kgValue = 3000;
-            kgToLbs.UnitLeft = "MTOW (KG)";
-            lbValue = kgToLbs.LeftToRight(kgValue);
-            Console.WriteLine("3000 MTOW (KG) in lbs is " + lbValue);
+// Add a unit of your own. The factor is how many of the new unit make up one base unit (one kilogram here).
+kgToLbs.AddUnit("pallet of 250 kg", 1d / 250);
+kgToLbs.UnitRight = "pallet of 250 kg";
+Console.WriteLine($"3000 MTOW (KG) is {kgToLbs.LeftToRight(3000)} pallets of 250 kg");
 
-            // Add a new unit with a custom conversion factor
-            kgToLbs.AddUnit("Chuck Norris", 9001);
-            kgToLbs.UnitRight = "Chuck Norris";
-            kgValue = 7;
-            var chucks = kgToLbs.LeftToRight(kgValue);
-            Console.WriteLine("7kg is equal to " + lbValue + " chucks");
-
-            Console.Read();
-        }
-    }
-}
+// Other quantities work the same way.
+Console.WriteLine($"100 km/h is {new SpeedConverter("km/h", "mph").LeftToRight(100, 2)} mph");
+Console.WriteLine($"1 atm is {new PressureConverter("atm", "psi").LeftToRight(1, 3)} psi");
+Console.WriteLine($"1 US gallon is {new VolumeConverter("US gallon", "l").LeftToRight(1, 6)} litres");
+Console.WriteLine($"37 °C is {new TemperatureConverter("°C", "°F").LeftToRight(37, 1)} °F");
+Console.WriteLine($"1 GiB is {new DigitalStorageConverter("GiB", "MB").LeftToRight(1, 3)} MB");

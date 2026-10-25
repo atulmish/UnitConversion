@@ -1,26 +1,34 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Copyright>George Kampolis 2018</Copyright>
-    <AssemblyTitle>UnitConversion</AssemblyTitle>
-    <VersionPrefix>0.3.2.1</VersionPrefix>
-    <Authors>George Kampolis, Previously Nick Lucas</Authors>
-    <TargetFrameworks>netstandard1.3;net40</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net8.0;net10.0</TargetFrameworks>
     <AssemblyName>UnitConversion</AssemblyName>
+    <RootNamespace>UnitConversion</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- netstandard2.0 has no ArgumentNullException.ThrowIfNull -->
+    <NoWarn>$(NoWarn);CA1510</NoWarn>
+
     <PackageId>UnitConversion</PackageId>
-    <PackageTags>unit;converter;conversion</PackageTags>
-    <PackageProjectUrl>http://www.gkampolis.com/UnitConversion/</PackageProjectUrl>
+    <Title>UnitConversion</Title>
+    <Description>An expansible unit conversion library for .NET. Converts distance, mass, area, volume, time, temperature, speed, pressure, energy, power, angle and digital storage, with exact definitions and synonym-based unit names.</Description>
+    <PackageTags>unit;units;converter;conversion;measurement;metric;imperial;temperature;distance;mass;volume;area;speed;pressure;energy;power;angle</PackageTags>
+    <PackageProjectUrl>https://github.com/atulmish/UnitConversion</PackageProjectUrl>
+    <PackageReleaseNotes>https://github.com/atulmish/UnitConversion/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/atulmish/UnitConversion</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/gkampolis/UnitConversion</RepositoryUrl>
-    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.3' ">$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <iconUrl>https://github.com/gkampolis/UnitConversion/blob/master/Logo/UnitConversion.jpg?raw=true</iconUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
+
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="..\stylecop.json" Link="stylecop.json" />
+    <None Include="..\README.md" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="..\Logo\icon.png" Pack="true" PackagePath="\" Visible="false" />
   </ItemGroup>
 
 </Project>

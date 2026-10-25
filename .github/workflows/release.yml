@@ -1,0 +1,67 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Verify tag matches version
+        run: |
+          version=$(grep -oP '(?<=<Version>)[^<]+' Directory.Build.props)
+          tag="${GITHUB_REF_NAME#v}"
+          if [ "$version" != "$tag" ]; then
+            echo "Tag v$tag does not match Directory.Build.props version $version"
+            exit 1
+          fi
+
+      - name: Restore
+        run: dotnet restore UnitConversion.slnx
+
+      - name: Build
+        run: dotnet build UnitConversion.slnx --no-restore -c Release
+
+      - name: Test
+        run: dotnet test UnitConversion.slnx --no-build -c Release
+
+      - name: Pack
+        run: dotnet pack UnitConversion/UnitConversion.csproj -c Release -o nupkgs --no-build
+
+      - name: Generate SBOM (CycloneDX)
+        run: |
+          dotnet tool install --global CycloneDX
+          mkdir sbom
+          dotnet-CycloneDX UnitConversion/UnitConversion.csproj -o sbom -fn UnitConversion.cdx.json -F Json -sv "${GITHUB_REF_NAME#v}" -t
+
+      - name: NuGet login (OIDC to short-lived API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: atulmish
+
+      - name: Push packages to NuGet
+        run: |
+          dotnet nuget push "nupkgs/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --skip-duplicate
+          dotnet nuget push "nupkgs/*.snupkg" --source https://api.nuget.org/v3/index.json --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --skip-duplicate
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          generate_release_notes: true
+          files: |
+            nupkgs/*.nupkg
+            sbom/*.json

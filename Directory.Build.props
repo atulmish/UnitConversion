@@ -1,0 +1,20 @@
+<Project>
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <Deterministic>true</Deterministic>
+    <Version>2.0.0</Version>
+    <Authors>Atul Mishra, George Kampolis, Nick Lucas</Authors>
+    <Copyright>Copyright (c) 2018 George Kampolis. Copyright (c) 2026 Atul Mishra and contributors.</Copyright>
+  </PropertyGroup>
+
+  <!-- Deterministic, reproducible builds on CI (paths in PDBs normalised for SourceLink) -->
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+</Project>

@@ -252,3 +252,9 @@ BugsnagConfig.Designer.cs
 
 #Ignore StyleCop cache
 StyleCop.Cache
+# Test and coverage output
+TestResults/
+coverage/
+nupkgs/
+sbom/
+*.snupkg
