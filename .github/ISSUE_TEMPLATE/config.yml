@@ -3,3 +3,6 @@ contact_links:
   - name: Report a security vulnerability
     url: https://github.com/atulmish/UnitConversion/security/advisories/new
     about: Please report vulnerabilities privately. Do not open a public issue.
+  - name: Ask a question or suggest a unit
+    url: https://github.com/atulmish/UnitConversion/discussions
+    about: Usage questions and ideas for new units and converters are best handled in Discussions.
