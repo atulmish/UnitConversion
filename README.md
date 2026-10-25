@@ -10,6 +10,7 @@
 
 <p align="center">
   <a href="https://github.com/atulmish/UnitConversion/actions/workflows/ci.yml"><img src="https://github.com/atulmish/UnitConversion/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://securityscorecards.dev/viewer/?uri=github.com/atulmish/UnitConversion"><img src="https://api.securityscorecards.dev/projects/github.com/atulmish/UnitConversion/badge" alt="OpenSSF Scorecard"></a>
   <a href="https://www.nuget.org/packages/UnitConversion"><img src="https://img.shields.io/nuget/v/UnitConversion.svg?logo=nuget" alt="NuGet version"></a>
   <a href="https://www.nuget.org/packages/UnitConversion"><img src="https://img.shields.io/nuget/dt/UnitConversion.svg?color=blue" alt="NuGet downloads"></a>
   <a href="https://github.com/atulmish/UnitConversion/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License: MIT"></a>
