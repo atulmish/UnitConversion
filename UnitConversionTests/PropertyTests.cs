@@ -92,8 +92,11 @@ public class PropertyTests
 
         var names = Gen.Elements(UnitNames(type));
         var inputs =
-            from a in names from b in names from c in names
-            from value in Values from factor in Gen.Elements(2d, 3d, 0.5, 10d, 1000d)
+            from a in names
+            from b in names
+            from c in names
+            from value in Values
+            from factor in Gen.Elements(2d, 3d, 0.5, 10d, 1000d)
             select (a, b, c, value, factor);
 
         RunProperty(Prop.ForAll(inputs.ToArbitrary(), input =>
