@@ -1,26 +1,36 @@
 name: Release
 
+# Runs when a version tag is pushed: tests, packs, attests, signs and publishes to NuGet.
+# It can also be started by hand on a branch (a dry run): everything up to signing runs, but nothing is
+# published and no release is created.
 on:
   push:
     tags: ["v*"]
+  workflow_dispatch:
 
 permissions:
-  contents: write
-  id-token: write
+  contents: read
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write       # create the GitHub release
+      id-token: write       # NuGet trusted publishing, build provenance and keyless signing
+      attestations: write   # store the build provenance attestation
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
 
-      - uses: actions/setup-dotnet@v6
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6
         with:
           dotnet-version: |
             8.0.x
             10.0.x
 
       - name: Verify tag matches version
+        if: github.ref_type == 'tag'
         run: |
           version=$(grep -oP '(?<=<Version>)[^<]+' Directory.Build.props)
           tag="${GITHUB_REF_NAME#v}"
@@ -43,25 +53,44 @@ jobs:
 
       - name: Generate SBOM (CycloneDX)
         run: |
-          dotnet tool install --global CycloneDX
+          dotnet tool install --global CycloneDX --version 6.3.1
+          version=$(grep -oP '(?<=<Version>)[^<]+' Directory.Build.props)
           mkdir sbom
-          dotnet-CycloneDX UnitConversion/UnitConversion.csproj -o sbom -fn UnitConversion.cdx.json -F Json -sv "${GITHUB_REF_NAME#v}" -t
+          dotnet-CycloneDX UnitConversion/UnitConversion.csproj -o sbom -fn UnitConversion.cdx.json -F Json -sv "$version" -t
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: nupkgs/*.nupkg
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+
+      - name: Sign the package (Sigstore, keyless)
+        run: |
+          for package in nupkgs/*.nupkg; do
+            cosign sign-blob --yes --bundle "$package.sigstore.json" "$package"
+          done
 
       - name: NuGet login (OIDC to short-lived API key)
-        uses: NuGet/login@v1
+        if: github.ref_type == 'tag'
+        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1
         id: login
         with:
           user: atulmish
 
       - name: Push packages to NuGet
+        if: github.ref_type == 'tag'
         run: |
           dotnet nuget push "nupkgs/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --skip-duplicate
           dotnet nuget push "nupkgs/*.snupkg" --source https://api.nuget.org/v3/index.json --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --skip-duplicate
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v3
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3
         with:
           generate_release_notes: true
           files: |
             nupkgs/*.nupkg
+            nupkgs/*.sigstore.json
             sbom/*.json

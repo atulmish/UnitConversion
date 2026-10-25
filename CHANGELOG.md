@@ -6,6 +6,17 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- Each package is attested with signed build provenance and signed with Sigstore at release time, and the signature bundle is attached to the GitHub release. See "Verifying a release" in the security policy
+- An OpenSSF Scorecard workflow
+- The release workflow can be started by hand on a branch as a dry run that builds, attests and signs but publishes nothing
+
+### Changed
+
+- Workflows use read-only tokens at the top level and grant write permissions only to the job that needs them
+- Every GitHub Action is pinned to a commit SHA (Dependabot keeps them current), and the tools installed in workflows have pinned versions
+
 ## [2.0.0] - 2026-10-25
 
 Version 2.0 keeps the public API and every unit name of 1.x. It is a major release because it drops two target
