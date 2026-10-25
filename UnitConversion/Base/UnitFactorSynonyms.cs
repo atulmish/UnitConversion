@@ -1,86 +1,78 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="UnitFactorSynonyms.cs" company="George Kampolis">
-//     Copyright (c) George Kampolis. All rights reserved.
-//     Licensed under the MIT License, Version 2.0. See LICENSE.md in the project root for license information.
-// </copyright>
-//-----------------------------------------------------------------------
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace UnitConversion.Base
+namespace UnitConversion.Base;
+
+/// <summary>
+/// The set of names (symbol, singular, plural, spelling variants) that identify one unit.
+/// Name matching ignores case and culture.
+/// </summary>
+public class UnitFactorSynonyms
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    private readonly List<string> synonyms = new List<string>();
 
-    public class UnitFactorSynonyms
+    /// <summary>
+    /// Creates an empty set of synonyms.
+    /// </summary>
+    public UnitFactorSynonyms()
     {
-        public UnitFactorSynonyms() { }
-        public UnitFactorSynonyms(params string[] items)
+    }
+
+    /// <summary>
+    /// Creates a set of synonyms.
+    /// </summary>
+    /// <param name="items">The names of the unit.</param>
+    public UnitFactorSynonyms(params string[] items)
+    {
+        if (items == null)
         {
-            _synonyms.AddRange(items);
+            throw new ArgumentNullException(nameof(items));
         }
 
-        List<string> _synonyms = new List<string>();
+        synonyms.AddRange(items);
+    }
 
-        /// <summary>
-        /// The list of synonyms this object holds
-        /// </summary>
-        public IEnumerable<string> Synonyms
+    /// <summary>
+    /// The list of synonyms this object holds.
+    /// </summary>
+    public IEnumerable<string> Synonyms => synonyms.AsEnumerable();
+
+    /// <summary>
+    /// Allows a string to be used where a set of synonyms is expected.
+    /// </summary>
+    /// <param name="synonym">The single name of the unit.</param>
+    public static implicit operator UnitFactorSynonyms(string synonym) => new UnitFactorSynonyms(synonym);
+
+    /// <inheritdoc />
+    public override string ToString() => string.Join(", ", synonyms);
+
+    // Append a new synonym to the list.
+    internal void AddSynonym(string synonym)
+    {
+        if (Contains(synonym))
         {
-            get
-            {
-                return _synonyms.AsEnumerable();
-            }
+            throw new UnitAlreadyExistsException(synonym);
         }
 
+        synonyms.Add(synonym);
+    }
 
-        // ** INTERNAL HELPERS **
-
-        // Append new syonym to the list
-        internal void AddSynonym(string synonym)
+    // Find whether some synonym of the given set is included in this one.
+    internal bool Contains(UnitFactorSynonyms other)
+    {
+        foreach (var synonym in other.Synonyms)
         {
             if (Contains(synonym))
             {
-                throw new UnitAlreadyExistsException(synonym);
+                return true;
             }
-            _synonyms.Add(synonym);
         }
 
-        // Find if some synonym of a given UnitFactor is included in this UnitFactor
-        internal bool Contains(UnitFactorSynonyms synonyms)
-        {
-            foreach (var syn in synonyms.Synonyms)
-            {
-                if (this.Contains(syn))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        // Find if some synonym is included in this UnitFactor
-        internal bool Contains(string synonym)
-        {
-            return _synonyms.Contains(synonym, StringComparer.CurrentCultureIgnoreCase);
-        }
-
-
-        // ** OVERRIDES **
-        
-        public override int GetHashCode()
-        {
-            return _synonyms.GetHashCode();
-        }
-
-        public override string ToString()
-        {
-            return String.Join(", ", _synonyms);
-        }
-
-        // Allow strings to be interpreted as a UnitDictionaryKey
-        public static implicit operator UnitFactorSynonyms(string synonym)
-        {
-            return new UnitFactorSynonyms(synonym);
-        }
+        return false;
     }
+
+    // Find whether a synonym is included in this set, ignoring case and culture.
+    internal bool Contains(string? synonym) =>
+        synonym != null && synonyms.Contains(synonym, StringComparer.OrdinalIgnoreCase);
 }

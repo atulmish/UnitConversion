@@ -1,0 +1,102 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Build and test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Restore
+        run: dotnet restore UnitConversion.slnx
+
+      - name: Build
+        run: dotnet build UnitConversion.slnx --no-restore -c Release
+
+      - name: Format check
+        if: matrix.os == 'ubuntu-latest'
+        run: dotnet format UnitConversion.slnx --verify-no-changes --severity warn --verbosity minimal
+
+      - name: Test (net8.0 and net10.0) with coverage
+        run: dotnet test UnitConversion.slnx --no-build -c Release --collect:"XPlat Code Coverage" --results-directory ./TestResults
+
+      - name: Coverage summary
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          dotnet tool install --global dotnet-reportgenerator-globaltool
+          reportgenerator -reports:"TestResults/**/coverage.cobertura.xml" -targetdir:coverage \
+            -assemblyfilters:"+UnitConversion;-UnitConversionTests;-UnitConversionExample" \
+            -reporttypes:"MarkdownSummaryGithub;Cobertura"
+          cat coverage/SummaryGithub.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Enforce line coverage
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          rate=$(grep -oP '<coverage[^>]*line-rate="\K[0-9.]+' coverage/Cobertura.xml | head -1)
+          pct=$(awk -v r="$rate" 'BEGIN { printf "%.1f", r * 100 }')
+          echo "Line coverage: ${pct}% (minimum 95%)"
+          awk -v r="$rate" 'BEGIN { exit (r >= 0.95) ? 0 : 1 }' || { echo "::error::Line coverage ${pct}% is below the 95% minimum"; exit 1; }
+
+      - name: Upload coverage report
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage
+          path: coverage/
+
+  package:
+    name: Pack and check the package
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Pack
+        run: dotnet pack UnitConversion/UnitConversion.csproj -c Release -o nupkgs
+
+      - name: No vulnerable dependencies reach consumers
+        run: |
+          dotnet restore UnitConversion/UnitConversion.csproj
+          report=$(dotnet list UnitConversion/UnitConversion.csproj package --vulnerable --include-transitive 2>&1)
+          echo "$report"
+          if echo "$report" | grep -q "has the following vulnerable packages"; then
+            echo "::error::The package depends on a vulnerable package"
+            exit 1
+          fi
+
+      - name: Package contents
+        run: |
+          unzip -l nupkgs/UnitConversion.*.nupkg | grep -E "lib/|README|icon" 
+          for tfm in netstandard2.0 net8.0 net10.0; do
+            unzip -l nupkgs/UnitConversion.*.nupkg | grep -q "lib/$tfm/UnitConversion.dll" || { echo "::error::lib/$tfm is missing"; exit 1; }
+          done
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: nupkgs
+          path: nupkgs/

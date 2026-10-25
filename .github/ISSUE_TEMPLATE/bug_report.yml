@@ -1,0 +1,28 @@
+name: Bug report
+description: A conversion gives a wrong result, or the library fails
+labels: ["bug"]
+body:
+  - type: textarea
+    attributes:
+      label: What happened
+      description: A clear description of the problem.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reproduction
+      description: The converter, the two units, the input value, the result you expected (with a source for the expected value) and the result you got.
+      placeholder: |
+        new MassConverter("kg", "lb").LeftToRight(1)  // expected 2.2046226218, got ...
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Package version
+      placeholder: "2.0.0"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Target framework and operating system
+      placeholder: ".NET 8, Windows 11"

@@ -1,0 +1,15 @@
+# Markdown style checks for the README, docs and community files (run in CI).
+config:
+  default: true
+  MD013: false        # line length: prose is wrapped by editors, tables and URLs are long
+  MD033: false        # inline HTML is used for the README header
+  MD041: false        # the README starts with an HTML header, templates have no H1
+  MD060: false        # table delimiter style: the compact |---| rows are used throughout
+  MD024:
+    siblings_only: true
+globs:
+  - "**/*.md"
+ignores:
+  - "**/bin/**"
+  - "**/obj/**"
+  - "node_modules/**"

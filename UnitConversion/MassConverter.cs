@@ -1,39 +1,49 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="MassConverter.cs" company="George Kampolis">
-//     Copyright (c) George Kampolis. All rights reserved.
-//     Licensed under the MIT License, Version 2.0. See LICENSE.md in the project root for license information.
-// </copyright>
-//-----------------------------------------------------------------------
+using UnitConversion.Base;
 
-namespace UnitConversion
+namespace UnitConversion;
+
+/// <summary>
+/// Converts between mass units.
+/// </summary>
+/// <remarks>
+/// The base unit is the kilogram. The pound is defined as 0.45359237 kg and the avoirdupois units are derived from it. The short ton is 2000 lb and the long ton is 2240 lb.
+/// </remarks>
+public class MassConverter : BaseUnitConverter
 {
-    using System;
-    using UnitConversion.Base;
+    /// <summary>
+    /// Creates a converter whose left and right units are both the base unit (kg).
+    /// </summary>
+    public MassConverter()
+    {
+        Instantiate(CreateUnits());
+    }
 
     /// <summary>
-    /// Converts between mass units.
+    /// Creates a converter between two units.
     /// </summary>
-    public class MassConverter : BaseUnitConverter
+    /// <param name="leftUnit">The unit on the left. Any synonym of a supported unit.</param>
+    /// <param name="rightUnit">The unit on the right. Any synonym of a supported unit.</param>
+    /// <exception cref="UnitNotSupportedException">A unit is not supported by this converter.</exception>
+    public MassConverter(string leftUnit, string rightUnit)
     {
-        UnitFactors units = new UnitFactors("kg")
-        {
-            { new UnitFactorSynonyms("kg", "kilogram"), 1 },
-            { new UnitFactorSynonyms("gram", "g"), 1000 },
-            { new UnitFactorSynonyms("lb", "lbs", "pound", "pounds"), 100000000d / 45359237 },
-            { new UnitFactorSynonyms("st", "stone"), 50000000d / 317514659 },
-            { new UnitFactorSynonyms("oz", "ounce"), 1600000000d / 45359237 },
-            { new UnitFactorSynonyms("quintal"), 0.01 },
-            { new UnitFactorSynonyms("short ton", "net ton", "us ton"), 0.00110231 },
-            { new UnitFactorSynonyms("long ton", "weight ton", "gross ton", "imperial ton"), 0.000984207 },
-        };
-
-        public MassConverter(string leftUnit, string rightUnit)
-        {
-            Instantiate(units, leftUnit, rightUnit);
-        }
-        public MassConverter() : base()
-        {
-            Instantiate(units);
-        }
+        Instantiate(CreateUnits(), leftUnit, rightUnit);
     }
+
+    // Each factor is how many of the unit make up one kg. Definitions are exact (see docs/units.md).
+    private static UnitFactors CreateUnits() => new UnitFactors("kg")
+    {
+        { new UnitFactorSynonyms("kg", "kilogram", "kilograms"), 1 },
+        { new UnitFactorSynonyms("gram", "g", "grams"), 1000 },
+        { new UnitFactorSynonyms("mg", "milligram", "milligrams"), 1_000_000 },
+        { new UnitFactorSynonyms("µg", "μg", "ug", "microgram", "micrograms"), 1_000_000_000 },
+        { new UnitFactorSynonyms("t", "tonne", "tonnes", "metric ton"), 0.001 },
+        { new UnitFactorSynonyms("quintal"), 0.01 },
+        { new UnitFactorSynonyms("ct", "carat"), 5000 },
+        { new UnitFactorSynonyms("gr", "grain"), 1d / 0.00006479891 },
+        { new UnitFactorSynonyms("lb", "lbs", "pound", "pounds"), 1d / 0.45359237 },
+        { new UnitFactorSynonyms("oz", "ounce", "ounces"), 1d / 0.028349523125 },
+        { new UnitFactorSynonyms("st", "stone"), 1d / 6.35029318 },
+        { new UnitFactorSynonyms("short ton", "net ton", "us ton"), 1d / 907.18474 },
+        { new UnitFactorSynonyms("long ton", "weight ton", "gross ton", "imperial ton"), 1d / 1016.0469088 },
+    };
 }

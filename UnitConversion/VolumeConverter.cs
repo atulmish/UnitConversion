@@ -1,42 +1,56 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="VolumeConverter.cs" company="George Kampolis">
-//     Copyright (c) George Kampolis. All rights reserved.
-//     Licensed under the MIT License, Version 2.0. See LICENSE.md in the project root for license information.
-// </copyright>
-//-----------------------------------------------------------------------
-namespace UnitConversion
+using UnitConversion.Base;
+
+namespace UnitConversion;
+
+/// <summary>
+/// Converts between volume units.
+/// </summary>
+/// <remarks>
+/// The base unit is the litre. Cubic units derive from the metre, foot and inch; the US customary units from the US gallon (231 in³ = 3.785411784 L); the imperial units from the imperial gallon (4.54609 L).
+/// </remarks>
+public class VolumeConverter : BaseUnitConverter
 {
-    using UnitConversion.Base;
+    /// <summary>
+    /// Creates a converter whose left and right units are both the base unit (l).
+    /// </summary>
+    public VolumeConverter()
+    {
+        Instantiate(CreateUnits());
+    }
 
     /// <summary>
-    /// Converts between volume units.
+    /// Creates a converter between two units.
     /// </summary>
-    public class VolumeConverter : BaseUnitConverter
+    /// <param name="leftUnit">The unit on the left. Any synonym of a supported unit.</param>
+    /// <param name="rightUnit">The unit on the right. Any synonym of a supported unit.</param>
+    /// <exception cref="UnitNotSupportedException">A unit is not supported by this converter.</exception>
+    public VolumeConverter(string leftUnit, string rightUnit)
     {
-        UnitFactors units = new UnitFactors("l")
-        {
-            { new UnitFactorSynonyms("l", "L", "lt", "ltr", "liter", "litre", "dm³", "dm3", "cubic decimetre"), 1 },
-            { new UnitFactorSynonyms("m³", "m3", "cubic metre"), 0.001 },
-            { new UnitFactorSynonyms("cm³", "cm3", "cubic centimetre"), 1000 },
-            { new UnitFactorSynonyms("mm³", "mm3", "cubic millimetre"), 1000000 },
-            { new UnitFactorSynonyms("ft³", "ft3", "cubic foot", "cubic feet", "cu ft"), 0.0353147 },
-            { new UnitFactorSynonyms("in³", "in3", "cu in", "cubic inch"), 61.0237 },
-            { new UnitFactorSynonyms("imperial pint", "imperial pt", "imperial p"), 1.75975 },
-            { new UnitFactorSynonyms("imperial gallon", "imperial gal"), 0.219969 },
-            { new UnitFactorSynonyms("imperial quart", "imperial qt"), 0.879877 },
-            { new UnitFactorSynonyms("US pint", "US pt", "US p"), 2.11337643513819 },
-            { new UnitFactorSynonyms("US gallon", "US gal"), 0.264172 },
-            { new UnitFactorSynonyms("US quart", "US qt"), 2.11338 },
-
-        };
-        
-        public VolumeConverter(string leftUnit, string rightUnit)
-        {
-            Instantiate(units, leftUnit, rightUnit);
-        }
-        public VolumeConverter()
-        {
-            Instantiate(units);
-        }
+        Instantiate(CreateUnits(), leftUnit, rightUnit);
     }
+
+    // Each factor is how many of the unit make up one l. Definitions are exact (see docs/units.md).
+    private static UnitFactors CreateUnits() => new UnitFactors("l")
+    {
+        { new UnitFactorSynonyms("l", "L", "lt", "ltr", "liter", "litre", "liters", "litres", "dm³", "dm3", "cubic decimetre", "cubic decimeter"), 1 },
+        { new UnitFactorSynonyms("ml", "millilitre", "milliliter", "millilitres", "milliliters"), 1000 },
+        { new UnitFactorSynonyms("cl", "centilitre", "centiliter"), 100 },
+        { new UnitFactorSynonyms("dl", "decilitre", "deciliter"), 10 },
+        { new UnitFactorSynonyms("m³", "m3", "cubic metre", "cubic meter"), 0.001 },
+        { new UnitFactorSynonyms("cm³", "cm3", "cubic centimetre", "cubic centimeter", "cc"), 1000 },
+        { new UnitFactorSynonyms("mm³", "mm3", "cubic millimetre", "cubic millimeter"), 1_000_000 },
+        { new UnitFactorSynonyms("ft³", "ft3", "cubic foot", "cubic feet", "cu ft"), 1d / 28.316846592 },
+        { new UnitFactorSynonyms("in³", "in3", "cu in", "cubic inch", "cubic inches"), 1d / 0.016387064 },
+        { new UnitFactorSynonyms("imperial pint", "imperial pt", "imperial p"), 1d / 0.56826125 },
+        { new UnitFactorSynonyms("imperial quart", "imperial qt"), 1d / 1.1365225 },
+        { new UnitFactorSynonyms("imperial gallon", "imperial gal"), 1d / 4.54609 },
+        { new UnitFactorSynonyms("imperial fluid ounce", "imperial fl oz"), 1d / 0.0284130625 },
+        { new UnitFactorSynonyms("US teaspoon", "US tsp"), 1d / 0.00492892159375 },
+        { new UnitFactorSynonyms("US tablespoon", "US tbsp"), 1d / 0.01478676478125 },
+        { new UnitFactorSynonyms("US fluid ounce", "US fl oz"), 1d / 0.0295735295625 },
+        { new UnitFactorSynonyms("US cup"), 1d / 0.2365882365 },
+        { new UnitFactorSynonyms("US pint", "US pt", "US p"), 1d / 0.473176473 },
+        { new UnitFactorSynonyms("US quart", "US qt"), 1d / 0.946352946 },
+        { new UnitFactorSynonyms("US gallon", "US gal"), 1d / 3.785411784 },
+    };
 }

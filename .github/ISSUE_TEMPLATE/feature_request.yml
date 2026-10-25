@@ -1,0 +1,18 @@
+name: Feature request or missing unit
+description: Suggest a new unit, a new converter or another improvement
+labels: ["enhancement"]
+body:
+  - type: textarea
+    attributes:
+      label: What is missing
+      description: The unit or converter you need, and the names it is commonly known by (symbol, singular, plural, spelling variants).
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Definition
+      description: The exact definition of the unit in terms of an SI unit, with a link to a reliable source. Without it the unit cannot be added with confidence.
+  - type: textarea
+    attributes:
+      label: Use case
+      description: What you are trying to do.
