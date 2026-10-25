@@ -110,6 +110,10 @@ An unknown unit throws `UnitNotSupportedException`, and adding a name that alrea
 
 Version 2.0 keeps the public API and every unit name from 1.x. It drops .NET Framework 4.0 and .NET Standard 1.3 and makes a few corrections, including the US quart, which was converted with the factor of the US pint. See the [changelog](CHANGELOG.md) for the full list.
 
+## Questions and ideas
+
+Ask questions and suggest new units in [Discussions](https://github.com/atulmish/UnitConversion/discussions). Use [issues](https://github.com/atulmish/UnitConversion/issues/new/choose) for wrong results and other bugs.
+
 ## Contributing
 
 Contributions are welcome, from a missing unit to a new converter. Please read the [contributing guidelines](.github/CONTRIBUTING.md) and the [code of conduct](.github/CODE_OF_CONDUCT.md). To report a vulnerability, follow the [security policy](.github/SECURITY.md).
