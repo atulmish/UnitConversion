@@ -33,4 +33,3 @@ cosign verify-blob UnitConversion.<version>.nupkg \
 ```
 
 Both commands fail if the file was not produced by that workflow from a version tag.
-
