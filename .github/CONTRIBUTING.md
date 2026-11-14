@@ -4,7 +4,7 @@ Contributions are welcome, from a missing unit to a new converter. For anything 
 
 ## Development setup
 
-1. Install the .NET SDK version pinned in `global.json`, and the .NET 8 runtime as well. The library targets `netstandard2.0`, `net8.0` and `net10.0`, and the tests run on `net8.0` and `net10.0`.
+1. Install the .NET SDK version pinned in `global.json`, and the .NET 8 and .NET 10 runtimes as well. The library targets `netstandard2.0`, `net8.0`, `net10.0` and `net11.0`, and the tests run on `net8.0`, `net10.0` and `net11.0`.
 2. Clone the repository and run:
 
    ```bash

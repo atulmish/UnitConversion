@@ -14,7 +14,7 @@
   <a href="https://www.nuget.org/packages/UnitConversion"><img src="https://img.shields.io/nuget/v/UnitConversion.svg?logo=nuget" alt="NuGet version"></a>
   <a href="https://www.nuget.org/packages/UnitConversion"><img src="https://img.shields.io/nuget/dt/UnitConversion.svg?color=blue" alt="NuGet downloads"></a>
   <a href="https://github.com/atulmish/UnitConversion/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License: MIT"></a>
-  <a href="https://dotnet.microsoft.com/download"><img src="https://img.shields.io/badge/.NET-Standard%202.0%20%7C%208%20%7C%2010-512BD4?logo=dotnet" alt=".NET Standard 2.0, .NET 8 and .NET 10"></a>
+  <a href="https://dotnet.microsoft.com/download"><img src="https://img.shields.io/badge/.NET-Standard%202.0%20%7C%208%20%7C%2010%20%7C%2011-512BD4?logo=dotnet" alt=".NET Standard 2.0, .NET 8, .NET 10 and .NET 11"></a>
 </p>
 
 ## Install
@@ -23,7 +23,7 @@
 dotnet add package UnitConversion
 ```
 
-The package targets .NET Standard 2.0, .NET 8 and .NET 10. That covers .NET Framework 4.6.1 and later, .NET Core 2.0 and later, and every current .NET release. It has no dependencies.
+The package targets .NET Standard 2.0, .NET 8, .NET 10 and .NET 11. That covers .NET Framework 4.6.1 and later, .NET Core 2.0 and later, and every current .NET release. It has no dependencies.
 
 ## Quick start
 
