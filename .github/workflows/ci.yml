@@ -25,6 +25,7 @@ jobs:
           dotnet-version: |
             8.0.x
             10.0.x
+            11.0.x
 
       - name: Restore
         run: dotnet restore UnitConversion.slnx
@@ -36,7 +37,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: dotnet format UnitConversion.slnx --verify-no-changes --severity warn --verbosity minimal
 
-      - name: Test (net8.0 and net10.0) with coverage
+      - name: Test (net8.0, net10.0 and net11.0) with coverage
         run: dotnet test UnitConversion.slnx --no-build -c Release --collect:"XPlat Code Coverage" --results-directory ./TestResults
 
       - name: Coverage summary
@@ -75,6 +76,7 @@ jobs:
           dotnet-version: |
             8.0.x
             10.0.x
+            11.0.x
 
       - name: Pack
         run: dotnet pack UnitConversion/UnitConversion.csproj -c Release -o nupkgs
@@ -92,7 +94,7 @@ jobs:
       - name: Package contents
         run: |
           unzip -l nupkgs/UnitConversion.*.nupkg | grep -E "lib/|README|icon" 
-          for tfm in netstandard2.0 net8.0 net10.0; do
+          for tfm in netstandard2.0 net8.0 net10.0 net11.0; do
             unzip -l nupkgs/UnitConversion.*.nupkg | grep -q "lib/$tfm/UnitConversion.dll" || { echo "::error::lib/$tfm is missing"; exit 1; }
           done
 

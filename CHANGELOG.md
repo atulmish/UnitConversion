@@ -8,6 +8,7 @@ All notable changes to this project are documented here. The format follows
 
 ### Added
 
+- The package, tests and example now also target `net11.0`. The repository SDK pin moves to .NET SDK 11
 - Property-based tests (FsCheck) that check, for every converter and hundreds of random units and values, that conversions round-trip, are monotonic, scale linearly, compose through any third unit and accept unit names in any case
 - Each package is attested with signed build provenance and signed with Sigstore at release time, and the signature bundle is attached to the GitHub release. See "Verifying a release" in the security policy
 - An OpenSSF Scorecard workflow
